@@ -1,12 +1,17 @@
 package net.bluecollargigs.bcgbackend.service.impl;
 
 import net.bluecollargigs.bcgbackend.service.UserService;
-
 import net.bluecollargigs.bcgbackend.dto.UserDto;
 import net.bluecollargigs.bcgbackend.mapper.UserMapper;
 import net.bluecollargigs.bcgbackend.repository.UserRepository;
 import net.bluecollargigs.bcgbackend.entity.User;
 
+import org.springframework.stereotype.Service;
+
+import lombok.AllArgsConstructor;
+
+@Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService{
 
     private UserRepository userRepository;

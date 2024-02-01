@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import net.bluecollargigs.bcgbackend.service.UserService;
 
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api/user")
 public class UserController {

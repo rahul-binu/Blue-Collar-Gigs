@@ -30,6 +30,9 @@ function Register() {
       }, []);
       const formattedDateTime = format(registrationDate, 'yyyy-MM-dd\'T\'HH:mm:ss.SSS');// Customize the format as needed
 
+       function goToLogin(){
+         navigate('/login');
+       }
 
     function handleEmail(e) {
         setEmail(e.target.value);
@@ -141,7 +144,7 @@ function Register() {
                                         </div>
 
                                         <button className="btn btn-success btn-lg w-100 mb-2" onClick={registerUser}>Sign up</button>
-                                        <span className=""><a href="" className="text-decoration-none ">Already have an account</a></span>
+                                        <span className=""><a href="" onClick={goToLogin} className="text-decoration-none ">Already have an account</a></span>
 
                                     </div>
 

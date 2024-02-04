@@ -1,0 +1,8 @@
+#profilePhoto {
+    width: 140px;
+    height: 140px;
+}
+
+#profilePhotoInput{
+display: none;
+}

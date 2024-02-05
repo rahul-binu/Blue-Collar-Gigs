@@ -1,13 +1,15 @@
-.webName{
-    color: #001F3F;
-}
-
 .blueCollarGigsTitle{
-cursor: pointer;
+color: black;
+padding-left: 10%;
 }
 
 .navbar{
-    background-color: #C0C0C0;
+    box-shadow:1px 0px 1px black;
+}
+
+#loginRegister{
+cursor: pointer;
+color:black;
 }
 
 /* Navy Blue (#001F3F)

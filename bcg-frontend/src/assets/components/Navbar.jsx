@@ -24,11 +24,11 @@ function Navbar() {
         <>
             <div className="container-fluid ">
                 <div className="row navbar">
-                    <div className="col-lg-3 p-2 mx-5 webName">
-                    <h3 className = "blueCollarGigsTitle" onClick ={ goToHome }>Blue Collar Gigs</h3>
+                    <div className="col-lg-4 col-sm-6 col-md-6 webName">
+                    <h2 className = " ps-4 " onClick ={ goToHome }><a href='' className='blueCollarGigsTitle text-decoration-none'>Blue Collar Gigs</a></h2>
                     </div>
-                    <div className="col p-2 text-end mx-5">
-                        <h4 ><span onClick={ goToLogin }>Login</span>/<span onClick={ goToRegister }>Regeister</span></h4>
+                    <div className="col-sm-6 col-md-6 col-lg-3  mx-5 text-end ">
+                        <h5 ><span onClick={ goToLogin } id='loginRegister'>Login / </span><span onClick={ goToRegister } id='loginRegister'>Regeister</span></h5>
 
                     </div>
                 </div>

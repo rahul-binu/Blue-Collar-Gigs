@@ -5,22 +5,30 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+// import jakarta.persistence.JoinColumn;
+// import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "worker")
 public class Worker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "w_id")
-    private Long wId;
+    @Column(name = "worker_id")
+    private Long workerId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "userId")
-    private User user;
+    //@OneToOne
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(name = "skills", nullable = false)
     private String skills;
@@ -40,23 +48,23 @@ public class Worker {
 // @Table(name = "worker")
 // public class Worker {
 
-//     @Id
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Long wId;
+// @Id
+// @GeneratedValue(strategy = GenerationType.IDENTITY)
+// private Long wId;
 
-//     @Column(name = "user_id", nullable = false)
-//     private Long userId;
+// @Column(name = "user_id", nullable = false)
+// private Long userId;
 
-//     @Column(name = "skills", nullable = false)
-//     private String skills;
+// @Column(name = "skills", nullable = false)
+// private String skills;
 
-//     @Column(name = "experiance", nullable = false)
-//     private String experiance;
+// @Column(name = "experiance", nullable = false)
+// private String experiance;
 
-//     @Column(name = "education", nullable = false)
-//     private String education;
+// @Column(name = "education", nullable = false)
+// private String education;
 
-//     @Column(name = "certification", nullable = false)
-//     private String certification;
+// @Column(name = "certification", nullable = false)
+// private String certification;
 
 // }

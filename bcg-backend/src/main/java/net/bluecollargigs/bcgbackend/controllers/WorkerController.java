@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@CrossOrigin("*");
+@CrossOrigin("*")
 @RequestMapping("/api/worker")
 public class WorkerController {
 
@@ -28,6 +30,12 @@ public class WorkerController {
 
         WorkerDto savedWorker = workerService.createWorker(workerDto);
         return new ResponseEntity<>(savedWorker, HttpStatus.CREATED);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<WorkerDto> getWorkerById(@PathVariable("id") Long workerId) {
+        WorkerDto workerDto = workerService.getWorkerById(workerId);
+        return ResponseEntity.ok(workerDto);
     }
 
 }

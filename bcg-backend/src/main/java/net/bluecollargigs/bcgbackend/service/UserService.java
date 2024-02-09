@@ -5,4 +5,5 @@ import net.bluecollargigs.bcgbackend.dto.UserDto;
 public interface UserService {
 
     UserDto createUser(UserDto userDto);
+    UserDto getUserByEmail(String email);
 }

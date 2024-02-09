@@ -19,7 +19,7 @@ const NewJobPost = () => {
                                     <hr />
                                 </div>
 
-                                <div className="row">
+                                {/* <div className="row">
                                     <div className="col-12 col-sm-auto mb-3">
                                         <div className="mx-auto" >
                                             <div className="d-flex justify-content-center align-items-center rounded" style={{ background: 'rgb(233, 236, 239)', height: '140px' }}>
@@ -27,7 +27,7 @@ const NewJobPost = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="row form-outline mb-2">
                                     <div className="col text-start">

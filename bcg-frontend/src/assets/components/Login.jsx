@@ -1,23 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
     const navigate = useNavigate();
 
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [errors, setErrors] = useState({
+        email: '',
+        password: ''
+    })
+
     function goRegister() {
         navigate('/Register');
     }
 
-    function handleEmail(e) {
+    function LoginUser(e) {
+        e.preventDefault();
+        const user = { email, password };
 
-    }
+        console.log(user);
 
-    function handlePassword(e) {
-
-    }
-
-    function LoginUser() {
+        AuthService.login(user.email, user.password)
+        .then(response => {
+            // Authentication successful, update UI (e.g., redirect to dashboard)
+            console.log("User logged in successfully");
+            // Redirect to dashboard or other authenticated route
+        })
+        .catch(error => {
+            // Authentication failed, handle error (e.g., display error message)
+            console.error("Login failed:", error.message);
+            // Display error message to the user
+        });
 
     }
 
@@ -31,28 +47,33 @@ function Login() {
 
                             <div className="card-body  text-center">
 
-                                <div className="form-outline mb-3">
-                                    <h1 className="">Blue Collar Gigs</h1>
-                                </div>
+                                <form action="">
 
-                                <div className="form-outline mb-4">
-                                    <input type='email' autoComplete="new-password"
-                                        className='form-control form-control-md '
-                                        onChange={handleEmail} placeholder="Email adress" />
-                                    {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
-                                </div>
-
-                                <div className="form-outline mb-4">
-                                    <div className="col">
-                                        <input type='password' autoComplete="new-password"
-                                            className='form-control form-control-md '
-                                            //className={`form-control form-control-md mb-3 ${errors.password ? 'is-invalid' : ''}`} name="password"
-                                            onChange={handlePassword} placeholder="Password" />
+                                    <div className="form-outline mb-3">
+                                        <h1 className="">Blue Collar Gigs</h1>
                                     </div>
-                                </div>
 
-                                <button className="btn btn-success btn-lg w-100 mb-2" onClick={LoginUser}>LogIn</button>
-                                <span className=""><a href="" onClick={goRegister} className="text-decoration-none ">Create new account</a></span>
+                                    <div className="form-outline mb-4">
+                                        <input type='email' autoComplete='current-email'
+                                            className='form-control form-control-md '
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            placeholder="Email adress" />
+                                        {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
+                                    </div>
+
+                                    <div className="form-outline mb-4">
+                                        <div className="col">
+                                            <input type='password' autoComplete='current-password'
+                                                className='form-control form-control-md '
+                                                //className={`form-control form-control-md mb-3 ${errors.password ? 'is-invalid' : ''}`} name="password"
+                                                onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                                        </div>
+                                    </div>
+
+                                    <button className="btn btn-success btn-lg w-100 mb-2" onClick={LoginUser}>LogIn</button>
+                                    <span className=""><a href="" onClick={goRegister} className="text-decoration-none ">Create new account</a></span>
+
+                                </form>
 
                             </div>
 

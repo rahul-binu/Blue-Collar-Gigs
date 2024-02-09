@@ -8,7 +8,6 @@ import net.bluecollargigs.bcgbackend.dto.WorkerDto;
 import net.bluecollargigs.bcgbackend.mapper.WorkerMapper;
 import net.bluecollargigs.bcgbackend.repository.WorkerRepository;
 import net.bluecollargigs.bcgbackend.service.WorkerService;
-//import net.bluecollargigs.bcgbackend.entity.worker;
 import net.bluecollargigs.bcgbackend.entity.Worker;
 import net.bluecollargigs.bcgbackend.exception.ResourceNotFoundException;
 
@@ -21,12 +20,14 @@ public class WorkerServiceImpl implements WorkerService {
     @Override
     public WorkerDto createWorker(WorkerDto workerDto) {
         Worker worker = WorkerMapper.mapToWorker(workerDto);
+        @SuppressWarnings("null")
         Worker savedWorker = workerRepository.save(worker);
         return WorkerMapper.mapToWorkerDto(savedWorker);
     }
 
     @Override
     public WorkerDto getWorkerById(Long workerId) {
+        @SuppressWarnings("null")
         Worker worker = workerRepository.findById(workerId)
         .orElseThrow(() -> new ResourceNotFoundException(workerId +" worker not found"));
         return WorkerMapper.mapToWorkerDto(worker);

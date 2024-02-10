@@ -20,11 +20,11 @@ public class UserServiceImpl implements UserService {
     // create user service
     @Override
     public UserDto createUser(UserDto userDto) {
+        // email already exixt or not
+        // if (userRepository.findByEmail(user.getEmail()) != null) {
+        // throw new RuntimeException("User with this email already exists");
+        // }
         User user = UserMapper.mapToUser(userDto);
-        //email already exixt or not
-        if (userRepository.findByEmail(user.getEmail()) != null) {
-            throw new RuntimeException("User with this email already exists");
-        }
         User savedUser = userRepository.save(user);
         return UserMapper.mapToUserDto(savedUser);
 
@@ -43,7 +43,5 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ResourceNotFoundException(email + " No User with this mail"));
         return UserMapper.mapToUserDto(user);
     }
-
-    
 
 }

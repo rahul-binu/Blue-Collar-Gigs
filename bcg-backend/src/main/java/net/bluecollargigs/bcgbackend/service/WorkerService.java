@@ -8,4 +8,5 @@ public interface WorkerService {
 
     WorkerDto createWorker(WorkerDto workerDto);
     WorkerDto getWorkerById(Long workerId);
+    WorkerDto updateWorker(Long userId, WorkerDto updatedWorker);
 }

@@ -29,7 +29,22 @@ public class WorkerServiceImpl implements WorkerService {
     public WorkerDto getWorkerById(Long workerId) {
         @SuppressWarnings("null")
         Worker worker = workerRepository.findById(workerId)
-        .orElseThrow(() -> new ResourceNotFoundException(workerId +" worker not found"));
+                .orElseThrow(() -> new ResourceNotFoundException(workerId + " worker not found"));
         return WorkerMapper.mapToWorkerDto(worker);
+    }
+
+    @Override
+    public WorkerDto updateWorker(Long userId, WorkerDto updatedWorker) {
+        Worker worker = workerRepository.findByUserId(userId).orElseThrow(
+                () -> new ResourceNotFoundException("NO worker found with " + userId));
+
+        worker.setSkills(updatedWorker.getSkills());
+        worker.setExperience(updatedWorker.getExperience());
+        worker.setEducation(updatedWorker.getEducation());
+        worker.setCertification(updatedWorker.getCertification());
+
+        Worker updatedWorkerObj = workerRepository.save(worker);
+
+        return WorkerMapper.mapToWorkerDto(updatedWorkerObj);
     }
 }

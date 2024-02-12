@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.bluecollargigs.bcgbackend.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+// import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.PathVariable;
 
 
 @CrossOrigin("http://localhost:3000")
@@ -32,10 +32,10 @@ public class UserController {
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
-    @GetMapping("{email}")
-    public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
-        UserDto userDto = userService.getUserByEmail(email);
-        return ResponseEntity.ok(userDto);
-    }
+    // @GetMapping("{email}")
+    // public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
+    //     UserDto userDto = userService.getUserByEmail(email);
+    //     return ResponseEntity.ok(userDto);
+    // }
     
 }

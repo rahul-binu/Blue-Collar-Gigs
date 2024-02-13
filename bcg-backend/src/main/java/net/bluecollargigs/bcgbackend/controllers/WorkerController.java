@@ -22,8 +22,8 @@ public class WorkerController {
 
     private WorkerService workerService;
 
-    public WorkerController(WorkerService WorkerService) {
-        this.workerService = WorkerService;
+    public WorkerController(WorkerService workerService) {
+        this.workerService = workerService;
     }
 
     @PostMapping

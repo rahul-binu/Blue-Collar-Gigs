@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import net.bluecollargigs.bcgbackend.dto.ProfileDto;
 import net.bluecollargigs.bcgbackend.entity.Profile;
-import net.bluecollargigs.bcgbackend.entity.Worker;
 import net.bluecollargigs.bcgbackend.exception.ResourceNotFoundException;
 import net.bluecollargigs.bcgbackend.mapper.ProfileMapper;
 import net.bluecollargigs.bcgbackend.repository.ProfileRepository;

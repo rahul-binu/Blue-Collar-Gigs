@@ -1,12 +1,17 @@
 package net.bluecollargigs.bcgbackend.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 import net.bluecollargigs.bcgbackend.dto.JobCategoryDto;
 
-@Service
 public interface JobCategoryService {
 
     JobCategoryDto createJobCategory(JobCategoryDto jobCategoryDto);
+
+    List<JobCategoryDto> getAllJobCategory();
+
+    JobCategoryDto updateJobCat(String id, JobCategoryDto newJobCat);
+
+    void deleteJobCat(String id);
     
 } 

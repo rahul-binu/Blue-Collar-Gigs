@@ -10,15 +10,17 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("api")
+@RequestMapping("/auth")
 public class JobCategoryController {
 
     private JobCategoryService jobCategoryService;
@@ -27,18 +29,31 @@ public class JobCategoryController {
         this.jobCategoryService = jobCategoryService;
     }
 
-    @PostMapping("/jobCat")
-    public ResponseEntity<JobCategoryDto> createJobCategory(JobCategoryDto jobCategoryDto) {
+    @PostMapping("/jobcat")
+    public ResponseEntity<JobCategoryDto> createJobCategory(@RequestBody JobCategoryDto jobCategoryDto) {
 
         JobCategoryDto jobCategory = jobCategoryService.createJobCategory(jobCategoryDto);
 
-        return new ResponseEntity<>(jobCategory,HttpStatus.CREATED);
+        return new ResponseEntity<>(jobCategory, HttpStatus.CREATED);
     }
 
-    @GetMapping()
-    public List<JobCategoryDto> getAllJobCategory() {
-        
-        return new String();
+    @GetMapping("/jobcat")
+    public ResponseEntity<List<JobCategoryDto>> getAllJobCategory() {
+        List<JobCategoryDto> jobCategories = jobCategoryService.getAllJobCategory();
+        return ResponseEntity.ok(jobCategories);
     }
-    
+
+    @PutMapping("/jobcat/{id}")
+    public ResponseEntity<JobCategoryDto> updarteJobCat(@PathVariable String id, @RequestBody JobCategoryDto newJobCat) {
+
+        JobCategoryDto jobCategory = jobCategoryService.updateJobCat(id, newJobCat);
+        return ResponseEntity.ok(jobCategory);
+    }
+
+    @DeleteMapping("/jobcat/{id}")
+    public String deleteJobCat(String id){
+       // String message = jobCategoryService.deleteJobCat(id);
+        return "Job category successfully deleted";
+    }
+
 }

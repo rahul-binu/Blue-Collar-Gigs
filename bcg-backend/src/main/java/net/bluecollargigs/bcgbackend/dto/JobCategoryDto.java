@@ -10,5 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JobCategoryDto {
+    private Long jCatId;
     private String jobCategory;
 }

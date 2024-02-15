@@ -10,8 +10,9 @@ public interface JobCategoryService {
 
     List<JobCategoryDto> getAllJobCategory();
 
-    JobCategoryDto updateJobCat(String id, JobCategoryDto newJobCat);
+    JobCategoryDto updateJobCat(Long id, JobCategoryDto newJobCat);
 
-    void deleteJobCat(String id);
+    void deleteJobCat(Long id);
+
     
 } 

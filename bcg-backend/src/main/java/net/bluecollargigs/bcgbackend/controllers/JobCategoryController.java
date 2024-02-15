@@ -44,16 +44,16 @@ public class JobCategoryController {
     }
 
     @PutMapping("/jobcat/{id}")
-    public ResponseEntity<JobCategoryDto> updarteJobCat(@PathVariable String id, @RequestBody JobCategoryDto newJobCat) {
+    public ResponseEntity<JobCategoryDto> updarteJobCat(@PathVariable Long id, @RequestBody JobCategoryDto newJobCat) {
 
         JobCategoryDto jobCategory = jobCategoryService.updateJobCat(id, newJobCat);
         return ResponseEntity.ok(jobCategory);
     }
 
     @DeleteMapping("/jobcat/{id}")
-    public String deleteJobCat(String id){
-       // String message = jobCategoryService.deleteJobCat(id);
-        return "Job category successfully deleted";
+    public ResponseEntity<String> deleteJobCat(@PathVariable("id") Long id) {
+        jobCategoryService.deleteJobCat(id);
+        return ResponseEntity.ok("Job category successfully deleted");
     }
 
 }

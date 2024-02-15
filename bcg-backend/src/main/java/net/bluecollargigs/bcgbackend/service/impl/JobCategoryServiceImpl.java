@@ -34,7 +34,7 @@ public class JobCategoryServiceImpl implements JobCategoryService {
                 .collect(Collectors.toList());
     }
 
-    public JobCategoryDto updateJobCat(String id, JobCategoryDto newJobCat){
+    public JobCategoryDto updateJobCat(Long id, JobCategoryDto newJobCat){
 
         JobCategory jobCategory = jobCategoryRepository.findById(id)
         .orElseThrow(()->new ResourceNotFoundException("No Job Category " + id));
@@ -46,7 +46,10 @@ public class JobCategoryServiceImpl implements JobCategoryService {
        return JobCategoryMapper.mapToJobCategoryDto(updatedJobCat);
     }
 
-    public void deleteJobCat(String id){
-
+    public void deleteJobCat(Long id){
+        JobCategory jobCategory = jobCategoryRepository.findById(id)
+        .orElseThrow(()-> new ResourceNotFoundException("No Job Cat"));
+        jobCategoryRepository.deleteById(id);
     }
+
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import AuthService from '../services/AuthService';
 
 function Login() {
 
@@ -20,20 +21,19 @@ function Login() {
     function LoginUser(e) {
         e.preventDefault();
         const user = { email, password };
-
-        console.log(user);
+        // console.log(user);
 
         AuthService.login(user.email, user.password)
-        .then(response => {
-            // Authentication successful, update UI (e.g., redirect to dashboard)
-            console.log("User logged in successfully");
-            // Redirect to dashboard or other authenticated route
-        })
-        .catch(error => {
-            // Authentication failed, handle error (e.g., display error message)
-            console.error("Login failed:", error.message);
-            // Display error message to the user
-        });
+            .then(response => {
+                // Authentication successful, update UI (e.g., redirect to dashboard)
+                console.log("User logged in successfully");
+              navigate('/Home');
+            })
+            .catch(error => {
+                // Authentication failed, handle error (e.g., display error message)
+                console.error("Login failed:", error.message);
+                // Display error message to the user
+            });
 
     }
 
@@ -50,6 +50,7 @@ function Login() {
                                 <form action="">
 
                                     <div className="form-outline mb-3">
+                                    {/* <div className='invalid-feedback'>{error.message}</div> */}
                                         <h1 className="">Blue Collar Gigs</h1>
                                     </div>
 

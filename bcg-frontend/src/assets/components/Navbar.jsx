@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import "/src/assets/styles/Navbar.css";
-
+import AuthService from '../services/AuthService';
 
 function Navbar() {
 
@@ -29,7 +29,7 @@ function Navbar() {
                     </div>
                     <div className="col-sm-6 col-md-6 col-lg-3  mx-5 text-end ">
                         <h5 ><span onClick={ goToLogin } id='loginRegister'>Login / </span><span onClick={ goToRegister } id='loginRegister'>Regeister</span></h5>
-
+                        <span className='text-dark'onClick={AuthService.logout} >logout</span>
                     </div>
                 </div>
             </div>

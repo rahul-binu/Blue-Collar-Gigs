@@ -90,7 +90,7 @@ function Register() {
             
             createUser(user).then((response) =>{
                 // console.log(response.data);
-                navigate('/');
+                navigate('/login');
             }).catch(error => {
                 console.log(error);
             })

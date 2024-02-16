@@ -17,11 +17,18 @@ class AuthService {
         console.log(response.data);
         return response.data;
     }
+
     logout() {
         const user = JSON.parse(localStorage.getItem('user'));
         console.log("User logged :", user);
         localStorage.removeItem('user');
         console.log("User logged out:", user);
+    }
+
+    logout2() {
+        const user = JSON.parse(localStorage.getItem('user'));
+        console.log("User logged out:", user); // Log user before removing from local storage
+        localStorage.removeItem('user');
     }
 
     getCurrentUser() {

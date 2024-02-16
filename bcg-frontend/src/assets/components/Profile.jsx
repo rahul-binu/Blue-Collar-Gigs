@@ -1,15 +1,41 @@
 import React, { useState } from "react";
 
 import '../styles/Profile.css';
+import { createProfile } from "../services/profile";
 
 function Profile() {
 
     const [profilePhoto, setProfilePhoto] = useState('');
     const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [mobile, setMobile] = useState('');
+    const [address, setAddress] = useState('');
+    const [District, setDistrict] = useState('');
+    const [state, setState] = useState('');
+    const [pincode, setPincode] = useState('');
+    const [bio, setBio] = useState('');
+    const userId = 12;
 
     function handleProfilePhoto(e) {
         setProfilePhoto(e.target.value);
-        console.log(profilePhoto);
+        //console.log(profilePhoto);
+    }
+
+    function saveProfile(e) {
+        e.preventDefault();
+
+        const Profile = {
+            userId,firstName, lastName, email, mobile,
+             bio
+        };
+
+        createProfile(Profile).then((response) => {
+             console.log(response.data);
+            navigate('/home');
+        }).catch(error => {
+            console.log(error);
+        })
     }
 
     return (
@@ -23,10 +49,10 @@ function Profile() {
 
                                 <div className="col-3 text-start list-group" id='sideBar'>
 
-                                    <a class="list-group-item py-3"><strong>Profile</strong></a>
-                                    <a class="list-group-item py-3"><strong>Skill</strong></a>
-                                    <a class="list-group-item py-3"><strong>Education</strong></a>
-                                    <a class="list-group-item py-3"><strong>Certification</strong></a>
+                                    <a className="list-group-item py-3"><strong>Profile</strong></a>
+                                    <a className="list-group-item py-3"><strong>Skill</strong></a>
+                                    <a className="list-group-item py-3"><strong>Education</strong></a>
+                                    <a className="list-group-item py-3"><strong>Certification</strong></a>
 
                                 </div>
 
@@ -70,6 +96,7 @@ function Profile() {
                                         <div className="col text-start">
                                             <label htmlFor="" className="mx-3 mb-1">First Name</label>
                                             <input type='email' autoComplete="new-password"
+                                                onChange={(e) => setFirstName(e.target.value)}
                                                 className='form-control'
                                                 placeholder="First Name" />
                                             {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
@@ -77,8 +104,8 @@ function Profile() {
                                         <div className="col text-start">
                                             <label htmlFor="" className="mx-3 mb-1">Last Name</label>
                                             <input type='email' autoComplete="new-password"
-                                                className='form-control'
-                                                placeholder="Last Name" />
+                                                onChange={(e) => setLastName(e.target.value)}
+                                                className='form-control' placeholder="Last Name" />
                                             {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
                                         </div>
                                     </div>
@@ -88,6 +115,7 @@ function Profile() {
                                             <div className="form-group">
                                                 <label htmlFor="" className="mx-3 mb-1">Email</label>
                                                 <input type='email' autoComplete="new-password"
+                                                    onChange={(e) => setEmail(e.target.value)}
                                                     className='form-control'
                                                     placeholder="user@example.com" />
                                                 {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
@@ -99,6 +127,7 @@ function Profile() {
                                             <div className="form-group">
                                                 <label htmlFor="" className="mx-3 mb-1">Mobile</label>
                                                 <input type='email' autoComplete="new-password"
+                                                    onChange={(e) => setMobile(e.target.value)}
                                                     className='form-control'
                                                     placeholder="9876543210" />
                                                 {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
@@ -111,6 +140,7 @@ function Profile() {
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">Address</label>
                                                 <textarea className="form-control" rows="2"
+                                                    onChange={(e) => setAddress(e.target.value)}
                                                     placeholder="House NO/Name, Street"></textarea>
                                             </div>
                                         </div>
@@ -121,6 +151,7 @@ function Profile() {
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">District</label>
                                                 <input type="text" className="form-control" rows="2"
+                                                    onChange={(e) => setDistrict(e.target.value)}
                                                     placeholder="District" />
                                             </div>
                                         </div>
@@ -128,6 +159,7 @@ function Profile() {
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">State</label>
                                                 <input type="text" className="form-control" rows="2"
+                                                    onChange={(e) => setState(e.target.value)}
                                                     placeholder="State" />
                                             </div>
                                         </div>
@@ -135,6 +167,7 @@ function Profile() {
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">Pin Code</label>
                                                 <input type="text" className="form-control" rows="2"
+                                                    onChange={(e) => setPincode(e.target.value)}
                                                     placeholder="654987" />
                                             </div>
                                         </div>
@@ -145,6 +178,7 @@ function Profile() {
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">About</label>
                                                 <textarea className="form-control" rows="5"
+                                                    onChange={(e) => setBio(e.target.value)}
                                                     placeholder="My Bio"></textarea>
                                             </div>
                                         </div>
@@ -152,7 +186,7 @@ function Profile() {
 
                                     <div className="row">
                                         <div className="col text-end mx-3">
-                                            <button className="btn btn-success mt-2 mb-2">Save Changes</button>
+                                            <button className="btn btn-success mt-2 mb-2" onClick={saveProfile}>Save Changes</button>
                                         </div>
                                     </div>
                                 </div>

@@ -29,7 +29,7 @@ function Login() {
         e.preventDefault();
         const user = { email, password };
 
-        console.log(user);
+       // console.log(user);
 
         AuthService.login(user.email, user.password)
             .then(response => {

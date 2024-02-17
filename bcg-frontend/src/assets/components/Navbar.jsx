@@ -4,6 +4,8 @@ import * as Icon from 'react-bootstrap-icons';
 
 import "/src/assets/styles/Navbar.css";
 import AuthService from '../services/AuthService';
+import { getProfileAction } from '../config/user';
+import { getUserDetails } from '../services/profile';
 
 function Navbar() {
 
@@ -12,7 +14,7 @@ function Navbar() {
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
-        console.log(user);
+       // console.log(user);
         if (user) {
             setLoggedIn(true);
         } else {
@@ -38,7 +40,8 @@ function Navbar() {
     }
 
     const goToProfile = () => {
-navigate("/profile")
+        getUserDetails();
+        navigate("/profile");
     }
 
     return (
@@ -57,8 +60,11 @@ navigate("/profile")
                             </>
                         )}
 
-                        { <span className='text-dark' onClick={handleLogout}>Logout</span>}{/*
+                        {<span className='text-dark' onClick={handleLogout}>Logout</span>}{/*
                         <span className='text-dark' onClick={AuthService.logout2}>Logout2</span> */}
+                    </div>
+                    <div className="text-danger" onClick={getProfileAction}>
+                        test actions
                     </div>
                 </div>
             </div>

@@ -10,9 +10,11 @@ class AuthService {
                 email,
                 password
             });
-        if (response.data.accessToken) {
-            localStorage.setItem('user', JSON.stringify(response.data.accessToken));
-            console.log("==========>", response.data.accessToken);
+        console.log(response.data)
+        if (response.data) {
+            localStorage.setItem('user', JSON.stringify(response.data.token));
+            // console.log("==========>", user);
+            //console.log (JSON.parse(localStorage.getItem('user')));
         }
         console.log(response.data);
         return response.data;
@@ -20,14 +22,7 @@ class AuthService {
 
     logout() {
         const user = JSON.parse(localStorage.getItem('user'));
-        console.log("User logged :", user);
-        localStorage.removeItem('user');
         console.log("User logged out:", user);
-    }
-
-    logout2() {
-        const user = JSON.parse(localStorage.getItem('user'));
-        console.log("User logged out:", user); // Log user before removing from local storage
         localStorage.removeItem('user');
     }
 

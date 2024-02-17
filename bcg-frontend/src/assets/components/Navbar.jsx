@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import * as Icon from 'react-bootstrap-icons';
 
 import "/src/assets/styles/Navbar.css";
 import AuthService from '../services/AuthService';
@@ -11,6 +12,7 @@ function Navbar() {
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
+        console.log(user);
         if (user) {
             setLoggedIn(true);
         } else {
@@ -35,6 +37,10 @@ function Navbar() {
         setLoggedIn(false);
     }
 
+    const goToProfile = () => {
+navigate("/profile")
+    }
+
     return (
         <>
             <div className="container-fluid">
@@ -44,15 +50,15 @@ function Navbar() {
                     </div>
                     <div className="col-sm-6 col-md-6 col-lg-3 mx-5 text-end">
                         {loggedIn ? (
-                            <span className='text-dark' onClick={handleLogout}>Logout</span>
+                            <span className='text-dark' id='profileIcon' onClick={goToProfile}><Icon.PersonFill /></span>
                         ) : (
                             <>
                                 <h5 ><span onClick={goToLogin} id='loginRegister'>Login / </span><span onClick={goToRegister} id='loginRegister'>Register</span></h5>
                             </>
                         )}
 
-                        <span className='text-dark' onClick={handleLogout}>Logout</span>
-                        <span className='text-dark' onClick={AuthService.logout2}>Logout2</span>
+                        { <span className='text-dark' onClick={handleLogout}>Logout</span>}{/*
+                        <span className='text-dark' onClick={AuthService.logout2}>Logout2</span> */}
                     </div>
                 </div>
             </div>

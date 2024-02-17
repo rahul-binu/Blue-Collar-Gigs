@@ -6,8 +6,11 @@ import net.bluecollargigs.bcgbackend.entity.*;
 public interface UserService {
 
     UserDto createUser(UserDto userDto);
-   // UserDto getUserByEmail(String email);
+    
+    UserDto getUserByEmail(String email);
     
 	public User findUserBYEmail(String email);
+
+    public UserDto findUserByJwt(String jwt);
 
 }

@@ -1,5 +1,6 @@
 package net.bluecollargigs.bcgbackend.config;
 
+
 import java.util.Date;
 
 import javax.crypto.SecretKey;
@@ -17,8 +18,8 @@ public class JwtProvider {
 	public static String generateToken(Authentication auth) {
 		
 		String jwt= Jwts.builder()
-				.setIssuer("rahulbinu220@gmail.com").setIssuedAt(new Date())
-				.setExpiration(new Date(new Date().getTime()+10000))
+				.setIssuer("rahulbinu@gmail.com").setIssuedAt(new Date())
+				.setExpiration(new Date(new Date().getTime()+86400000))
 				.claim("email", auth.getName())
 				.signWith(key)
 				.compact();

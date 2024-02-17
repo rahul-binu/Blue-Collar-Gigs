@@ -1,6 +1,7 @@
 package net.bluecollargigs.bcgbackend.service.impl;
 
 import net.bluecollargigs.bcgbackend.service.UserService;
+import net.bluecollargigs.bcgbackend.config.JwtProvider;
 import net.bluecollargigs.bcgbackend.dto.UserDto;
 import net.bluecollargigs.bcgbackend.mapper.UserMapper;
 import net.bluecollargigs.bcgbackend.repository.UserRepository;
@@ -26,18 +27,15 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    
-
     // commented becouse we are adding the new code that i coppied fron ajay and
     // removing the part becouse error in the
     // orElseThrow and removing te opotional valuie from the user reopsitory
     // @Override
-    // public UserDto getUserByEmail(String email) {
-    // User user = userRepository.findByEmail(email)
-    // .orElseThrow(() -> new ResourceNotFoundException(email + " No User with this
-    // mail"));
-    // return UserMapper.mapToUserDto(user);
-    // }
+    public UserDto getUserByEmail(String email) {
+     User user = userRepository.findByEmail(email);
+     //.orElseThrow(() -> new ResourceNotFoundException(email + " No User with this mail"));
+     return UserMapper.mapToUserDto(user);
+     }
 
     @Override
     public User findUserBYEmail(String email) {
@@ -45,4 +43,19 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public UserDto findUserByJwt(String jwt) {
+
+        String email = JwtProvider.getEmailFromJwtToken(jwt);
+        User user = userRepository.findByEmail(email);
+
+        return UserMapper.mapToUserDto(user);
+    }
+    // public User findUserByJwt(String jwt) {
+
+    // String email=JwtProvider.getEmailFromJwtToken(jwt);
+
+    // User user=userRepository.findByEmail(email);
+    // return user;
+    // }
 }

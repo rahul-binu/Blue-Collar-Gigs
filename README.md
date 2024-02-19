@@ -29,6 +29,12 @@ Go to the project directory
   cd blue-collar-gigs
 ```
 
+Go to the project frontend
+
+```bash
+  cd bcg-frontend
+```
+
 Install dependencies
 
 ```bash
@@ -42,7 +48,12 @@ Start the server
 ```bash
   npm run dev
 ```
+Go to the project backend
 
+```bash
+cd ..
+  cd bcg-backend
+```
 Satrt Spring server
 
 ```

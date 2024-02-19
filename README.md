@@ -52,3 +52,7 @@ Satrt Spring server
 ## 🚀 About Me
 Iam Rahul
 
+
+## Support
+
+For support, email just.commit.it.com or join our Slack channel.

@@ -1,0 +1,36 @@
+.jobContainer {
+    display: flex;
+    overflow: hidden; /* Hide overflowing content */
+}
+
+.cardContainer {
+    display: inline-block; /* Prevent cards from wrapping */
+    white-space: nowrap; /* Prevent cards from wrapping */
+    animation: marquee 100s linear infinite;  /* Apply marquee animation */
+}
+
+.card {
+    width: 100px; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%); /* Start position from the right side */
+    }
+    100% {
+        transform: translateX(calc(-300% - 60px)); /* Move off screen to the left */
+    }
+}
+
+.cardContainer {
+    animation-iteration-count: infinite;
+}
+
+.cardContainer:hover {
+    animation-play-state: paused; /* Pause animation on hover */
+}

@@ -14,7 +14,7 @@ function Navbar() {
 
     useEffect(() => {
         const user = AuthService.getCurrentUser();
-       // console.log(user);
+        // console.log(user);
         if (user) {
             setLoggedIn(true);
         } else {
@@ -48,9 +48,17 @@ function Navbar() {
         <>
             <div className="container-fluid">
                 <div className="row navbar">
+
                     <div className="col-lg-4 col-sm-6 col-md-6 webName">
                         <h2 className="ps-4" onClick={goToHome}><a href='' className='blueCollarGigsTitle text-decoration-none'>Blue Collar Gigs</a></h2>
                     </div>
+
+                    <div className="col">
+                        {<span className='text-dark' onClick={handleLogout}>Logout</span>}{/*
+                        <span className='text-dark' onClick={AuthService.logout2}>Logout2</span> */}
+                        <span className="text-danger" onClick={getProfileAction}> test actions</span>
+                    </div>
+
                     <div className="col-sm-6 col-md-6 col-lg-3 mx-5 text-end">
                         {loggedIn ? (
                             <span className='text-dark' id='profileIcon' onClick={goToProfile}><Icon.PersonFill /></span>
@@ -60,12 +68,8 @@ function Navbar() {
                             </>
                         )}
 
-                        {<span className='text-dark' onClick={handleLogout}>Logout</span>}{/*
-                        <span className='text-dark' onClick={AuthService.logout2}>Logout2</span> */}
                     </div>
-                    <div className="text-danger" onClick={getProfileAction}>
-                        test actions
-                    </div>
+
                 </div>
             </div>
         </>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import '../styles/Profile.css';
 import { createProfile } from "../services/profile";
+import ProfileSide from "./profile/profileSide";
 
 function Profile() {
 
@@ -26,12 +27,12 @@ function Profile() {
         e.preventDefault();
 
         const Profile = {
-            userId,firstName, lastName, email, mobile,
-             bio
+            userId, firstName, lastName, email, mobile,
+            bio
         };
 
         createProfile(Profile).then((response) => {
-             console.log(response.data);
+            console.log(response.data);
             navigate('/home');
         }).catch(error => {
             console.log(error);
@@ -47,14 +48,7 @@ function Profile() {
 
                             <div className="row card-body  text-center">
 
-                                <div className="col-3 text-start list-group" id='sideBar'>
-
-                                    <a className="list-group-item py-3"><strong>Profile</strong></a>
-                                    <a className="list-group-item py-3"><strong>Skill</strong></a>
-                                    <a className="list-group-item py-3"><strong>Education</strong></a>
-                                    <a className="list-group-item py-3"><strong>Certification</strong></a>
-
-                                </div>
+                                <ProfileSide />
 
                                 <div className="col-9">
 
@@ -86,7 +80,7 @@ function Profile() {
                                                 </div>
                                             </div>
                                             <div className="text-center text-sm-right">
-                                                <span className="">administrator</span>
+                                                <span className="">worker</span>
                                                 <div className="text-muted"><small>Joined 09 Dec 2017</small></div>
                                             </div>
                                         </div>

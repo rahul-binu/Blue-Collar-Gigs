@@ -2,6 +2,7 @@ import React from 'react';
 
 import "/src/assets/styles/Home.css";
 import * as Icon from 'react-bootstrap-icons';
+import JobCard from './JobCard';
 
 
 function Home() {
@@ -70,6 +71,10 @@ function Home() {
             <p>about</p>
           </div>
         </div>
+      </div>
+
+      <div className="container-fluid">
+        <JobCard />
       </div>
 
 

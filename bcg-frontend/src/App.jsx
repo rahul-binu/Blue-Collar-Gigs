@@ -9,6 +9,7 @@ import Login from './assets/components/Login';
 import Profile from './assets/components/Profile';
 import NewJobPost from './assets/components/NewJobPost';
 import WorkCreation from './assets/components/WorkCreation';
+import Skill from './assets/components/profile/Skill';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -26,6 +27,7 @@ function App() {
           <Route path='/profile' element={<Profile />}></Route>
           <Route path='/postnewwork' element={<NewJobPost />}></Route>
           <Route path='/creatework' element={<WorkCreation />}></Route>
+          <Route path='/skill' element ={<Skill />} ></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

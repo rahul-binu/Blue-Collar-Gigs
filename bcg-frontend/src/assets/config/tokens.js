@@ -17,10 +17,13 @@
 // }
 
 export function authHeaderMaker() {
+    const headers = null;
     const jwtToken = localStorage.getItem("user");
-    const tokenWithoutQuotes = jwtToken.replace(/^"|"$/g, ''); // Remove surrounding quotes
-    const headers = {
-        Authorization: `Bearer ${tokenWithoutQuotes}`
-    };
+    if (jwtToken) {
+        const tokenWithoutQuotes = jwtToken.replace(/^"|"$/g, ''); // Remove surrounding quotes
+        const headers = {
+            Authorization: `Bearer ${tokenWithoutQuotes}`
+        };
+    }
     return headers;
 }

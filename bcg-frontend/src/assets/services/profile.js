@@ -9,7 +9,7 @@ export const getUserDetails = async () => {
     try {
         const response = await axios.get(REST_API_BASE_URL, { headers });
         localStorage.setItem('userId', JSON.stringify(response.data.id));
-       // console.log(response.data);
+        // console.log(response.data);
         return response.data;
     } catch (error) {
         console.error('Error fetching user details:', error);
@@ -17,11 +17,11 @@ export const getUserDetails = async () => {
     }
 };
 
-export const createProfile = (profile) => {
-    console.log(profile, { headers });
-    // Make the POST request with the profile data and headers
-    return axios.post(REST_API_BASE_URL, profile, { headers });
-};
+export const createProfile = (profile) => axios.post(REST_API_BASE_URL, profile, { headers });
+
+    export const updateProfile = (profile) =>
+    axios.post(REST_API_BASE_URL, profile, { headers });
+
 
 
 export const getProfileData = (userId) => axios.get(REST_API_BASE_URL + '/' + userId, { headers });

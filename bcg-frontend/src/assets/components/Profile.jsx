@@ -6,38 +6,38 @@ import ProfileSide from "./profile/profileSide";
 
 function Profile() {
 
-    const id = localStorage.getItem("userId");
+    const userId = localStorage.getItem("userId");
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [mobile, setMobile] = useState('');
+    const [profileFirstName, setProfileFirstName] = useState('');
+    const [profileLastName, setProfileLastName] = useState('');
+    const [userEmail, setUserEmail] = useState('');
+    const [userPhone, setUserPhone] = useState('');
     const [address, setAddress] = useState('');
-    const [District, setDistrict] = useState('');
+    const [district, setDistrict] = useState('');
     const [state, setState] = useState('');
     const [pincode, setPincode] = useState('');
-    const [bio, setBio] = useState('');
+    const [aboutUser, setAboutUser] = useState('');
     //const userId = 12;
 
     useEffect(() => {
-        if (id) {
-            getProfileData(id).then((response) => {
-                console.log("============>",response.data)
-                setFirstName(response.data.profileFirstName);
-                setLastName(response.data.profileLastName);
-                setEmail(response.data.userEmail);
-                setMobile(response.data.userPhone);
+        if (userId) {
+            getProfileData(userId).then((response) => {
+                console.log("============>", response.data)
+                setProfileFirstName(response.data.profileFirstName);
+                setProfileLastName(response.data.profileLastName);
+                setUserEmail(response.data.userEmail);
+                setUserPhone(response.data.userPhone);
                 setAddress(response.data.address);
                 setDistrict(response.data.district);
                 setState(response.data.state);
                 setPincode(response.data.pincode);
-                setBio(response.data.aboutUser);
-              //  setProfilePhoto(response.data.profilePic);
+                setAboutUser(response.data.aboutUser);
+                //  setProfilePhoto(response.data.profilePic);
             }).catch(error => {
                 console.log(error);
             })
         }
-    }, [])    
+    }, [])
 
     function handleProfilePhoto(e) {
         setProfilePhoto(e.target.value);
@@ -47,12 +47,14 @@ function Profile() {
     function saveProfile(e) {
         e.preventDefault();
 
-        const Profile = {
-            userId, firstName, lastName, email, mobile,
-            bio
+        const profile = {
+            userId, profileFirstName, profileLastName, userEmail, userPhone,
+            address, district, state, pincode, aboutUser
         };
 
-        createProfile(Profile).then((response) => {
+        console.log(profile);
+
+        createProfile(profile).then((response) => {
             console.log(response.data);
             navigate('/home');
         }).catch(error => {
@@ -88,7 +90,7 @@ function Profile() {
                                         </div>
                                         <div className="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                             <div className="text-center text-sm-left mb-2 mb-sm-0">
-                                                <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">{firstName} {lastName}</h4>
+                                                <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">{profileFirstName} {profileLastName}</h4>
                                                 <p className="mb-0"></p>
                                                 <div>
                                                     <div className="mt-2">
@@ -111,16 +113,16 @@ function Profile() {
                                         <div className="col text-start">
                                             <label htmlFor="" className="mx-3 mb-1">First Name</label>
                                             <input type='email' autoComplete="new-password"
-                                                onChange={(e) => setFirstName(e.target.value)}
-                                                className='form-control' value={firstName}
+                                                onChange={(e) => setProfileFirstName(e.target.value)}
+                                                className='form-control' value={profileFirstName}
                                                 placeholder="First Name" />
                                             {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
                                         </div>
                                         <div className="col text-start">
                                             <label htmlFor="" className="mx-3 mb-1">Last Name</label>
                                             <input type='email' autoComplete="new-password"
-                                                onChange={(e) => setLastName(e.target.value)}
-                                                className='form-control' value={lastName}
+                                                onChange={(e) => setProfileLastName(e.target.value)}
+                                                className='form-control' value={profileLastName}
                                                 placeholder="Last Name" />
                                             {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
                                         </div>
@@ -131,8 +133,8 @@ function Profile() {
                                             <div className="form-group">
                                                 <label htmlFor="" className="mx-3 mb-1">Email</label>
                                                 <input type='email' autoComplete="new-password"
-                                                    onChange={(e) => setEmail(e.target.value)}
-                                                    className='form-control'value={email}
+                                                    onChange={(e) => setUserEmail(e.target.value)}
+                                                    className='form-control' value={userEmail}
                                                     placeholder="user@example.com" />
                                                 {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
                                             </div>
@@ -142,9 +144,9 @@ function Profile() {
                                         <div className="col text-start">
                                             <div className="form-group">
                                                 <label htmlFor="" className="mx-3 mb-1">Mobile</label>
-                                                <input type='number' autoComplete="new-password"
-                                                    onChange={(e) => setMobile(e.target.value)}
-                                                    className='form-control'value={mobile}
+                                                <input type='number' autoComplete="new-password"value={userPhone}
+                                                    onChange={(e) => setUserPhone(e.target.value)}
+                                                    className='form-control' 
                                                     placeholder="9876543210" />
                                                 {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
                                             </div>
@@ -167,7 +169,7 @@ function Profile() {
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">District</label>
                                                 <input type="text" className="form-control" rows="2"
-                                                value={District}
+                                                    value={district}
                                                     onChange={(e) => setDistrict(e.target.value)}
                                                     placeholder="District" />
                                             </div>
@@ -176,7 +178,7 @@ function Profile() {
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">State</label>
                                                 <input type="text" className="form-control" rows="2"
-                                                value={state}
+                                                    value={state}
                                                     onChange={(e) => setState(e.target.value)}
                                                     placeholder="State" />
                                             </div>
@@ -184,7 +186,7 @@ function Profile() {
                                         <div className="col mb-2 text-start">
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">Pin Code</label>
-                                                <input type="text" className="form-control" rows="2"value={pincode}
+                                                <input type="text" className="form-control" rows="2" value={pincode}
                                                     onChange={(e) => setPincode(e.target.value)}
                                                     placeholder="654987" />
                                             </div>
@@ -195,8 +197,8 @@ function Profile() {
                                         <div className="col mb-2 text-start">
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">About</label>
-                                                <textarea className="form-control" rows="5"value={bio}
-                                                    onChange={(e) => setBio(e.target.value)}
+                                                <textarea className="form-control" rows="5" value={aboutUser}
+                                                    onChange={(e) => setAboutUser(e.target.value)}
                                                     placeholder="My Bio"></textarea>
                                             </div>
                                         </div>

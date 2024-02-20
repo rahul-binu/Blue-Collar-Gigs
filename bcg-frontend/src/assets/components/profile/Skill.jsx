@@ -8,11 +8,7 @@ import ProfileSide from "./profileSide";
 
 const Skill = () => {
 
-    const [dropdownOpen, setDropdownOpen] = useState(false);
 
-    const toggleDropdown = () => {
-        setDropdownOpen(!dropdownOpen);
-    }
 
     return (
         <>
@@ -42,7 +38,7 @@ const Skill = () => {
                                         </div>
                                         <div className="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                             <div className="text-center text-sm-left mb-2 mb-sm-0">
-                                                <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">Ram Sam</h4>
+                                                <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">{firstName} Sam</h4>
                                                 <p className="mb-0">@12343456</p>
                                             </div>
                                             <div className="text-center text-sm-right">

@@ -10,7 +10,7 @@ Javascript, HTML, CSS, Java
 
 ## Tech Stack
 
-**Client:** React, Axios, Bootstrap
+**Client:** ReactJs, Axios, Bootstrap, VitJs
 
 **Server:** Springboot
 

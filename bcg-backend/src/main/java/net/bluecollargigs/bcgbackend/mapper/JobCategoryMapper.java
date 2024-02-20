@@ -7,12 +7,14 @@ public class JobCategoryMapper {
     public static JobCategoryDto mapToJobCategoryDto(JobCategory jobCategory) {
         return new JobCategoryDto(
                 jobCategory.getJCatId(),
-                jobCategory.getJobCategory());
+                jobCategory.getJobCategory(),
+                jobCategory.getJobDescription());
     }
 
     public static JobCategory mapToJobCategory(JobCategoryDto jobCategoryDto) {
         return new JobCategory(
                 jobCategoryDto.getJCatId(),
-                jobCategoryDto.getJobCategory());
+                jobCategoryDto.getJobCategory(),
+                jobCategoryDto.getJobDescription());
     }
 }

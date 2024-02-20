@@ -27,4 +27,7 @@ public class JobCategory {
     @Column(name = "job_category")
     private String jobCategory;
 
+    @Column(name = "job_description")
+    private String jobDescription;
+
 }

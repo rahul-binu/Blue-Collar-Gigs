@@ -34,22 +34,22 @@ public class JobCategoryServiceImpl implements JobCategoryService {
                 .collect(Collectors.toList());
     }
 
-    public JobCategoryDto updateJobCat(Long id, JobCategoryDto newJobCat) {
+    public JobCategoryDto updateJobCat(Long id, JobCategoryDto newJobCat){
 
         JobCategory jobCategory = jobCategoryRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No Job Category " + id));
+        .orElseThrow(()->new ResourceNotFoundException("No Job Category " + id));
 
-        jobCategory.setJobDescription(newJobCat.getJobDescription());
+        jobCategory.setJobCategory(newJobCat.getJobCategory());
         jobCategory.setJobDescription(newJobCat.getJobDescription());
 
         JobCategory updatedJobCat = jobCategoryRepository.save(jobCategory);
 
-        return JobCategoryMapper.mapToJobCategoryDto(updatedJobCat);
+       return JobCategoryMapper.mapToJobCategoryDto(updatedJobCat);
     }
 
-    public void deleteJobCat(Long id) {
+    public void deleteJobCat(Long id){
         JobCategory jobCategory = jobCategoryRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No Job Cat"));
+        .orElseThrow(()-> new ResourceNotFoundException("No Job Cat"));
         jobCategoryRepository.deleteById(id);
     }
 

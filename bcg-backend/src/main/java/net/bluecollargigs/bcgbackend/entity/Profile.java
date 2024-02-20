@@ -42,4 +42,19 @@ public class Profile {
     @Column(name = "about_user")
     private String aboutUser;
 
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "district")
+    private String district;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "pincode")
+    private String pincode;
+
+    @Column(name = "profile_pic")
+    private String profilePic;
+
 }

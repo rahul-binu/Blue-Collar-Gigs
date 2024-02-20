@@ -14,7 +14,12 @@ public class ProfileMapper {
                 profile.getProfileLastName(),
                 profile.getUserPhone(),
                 profile.getUserEmail(),
-                profile.getAboutUser());
+                profile.getAboutUser(),
+                profile.getAddress(),
+                profile.getDistrict(),
+                profile.getState(),
+                profile.getPincode(),
+                profile.getProfilePic());
     }
 
     public static Profile mapToProfile(ProfileDto profileDto) {
@@ -26,7 +31,13 @@ public class ProfileMapper {
                 profileDto.getProfileLastName(),
                 profileDto.getUserPhone(),
                 profileDto.getUserEmail(),
-                profileDto.getAboutUser());
+                profileDto.getAboutUser(),
+                profileDto.getAddress(),
+                profileDto.getDistrict(),
+                profileDto.getState(),
+                profileDto.getPincode(),
+                profileDto.getProfilePic()
+                );
 
     }
 }

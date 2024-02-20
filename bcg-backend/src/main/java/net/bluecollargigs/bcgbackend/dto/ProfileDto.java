@@ -17,5 +17,11 @@ public class ProfileDto {
     private Integer userPhone;
     private String userEmail;
     private String aboutUser;
+    private String address;
+    private String district;
+    private String state;
+    private String pincode;
+    private String profilePic;
+
 
 }

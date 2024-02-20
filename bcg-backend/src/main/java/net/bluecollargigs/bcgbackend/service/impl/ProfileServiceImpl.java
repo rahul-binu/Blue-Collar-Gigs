@@ -23,7 +23,7 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     public ProfileDto updateProfile(Long id, ProfileDto updatedProfile) {
-        Profile profile = profileRepository.findById(id).orElseThrow(
+        Profile profile = profileRepository.findByUserId(id).orElseThrow(
                 () -> new ResourceNotFoundException("NO profile found with " + id));
 
         profile.setProfileFirstName(updatedProfile.getProfileFirstName());
@@ -38,7 +38,7 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     public ProfileDto getProfileDetails(Long id) {
-        Profile profile = profileRepository.findById(id)
+        Profile profile = profileRepository.findByUserId(id)
                 .orElseThrow(() -> new ResourceNotFoundException("no Profile"));
         return ProfileMapper.mapToProfileDto(profile);
     }

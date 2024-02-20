@@ -17,13 +17,12 @@
 // }
 
 export function authHeaderMaker() {
-    const headers = null;
     const jwtToken = localStorage.getItem("user");
     if (jwtToken) {
         const tokenWithoutQuotes = jwtToken.replace(/^"|"$/g, ''); // Remove surrounding quotes
-        const headers = {
+        return {
             Authorization: `Bearer ${tokenWithoutQuotes}`
         };
     }
-    return headers;
+    return null; // Return null if no token found
 }

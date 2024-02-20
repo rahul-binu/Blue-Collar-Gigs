@@ -1,65 +1,36 @@
-import React from "react";
-import JCStyle from "/src/assets/styles/JobCard.module.css";
-//import styles from "/src/assets/styles/WorkCreation.module.css";
+import React from 'react';
+import { Carousel } from 'react-bootstrap';
+
 const JobCard = () => {
     return (
-        <div className={JCStyle.jobContainer}>
-            <div className={`${JCStyle.cardContainer} row`}>
-                <div className="col">
-                    <div className={JCStyle.card}>hello</div>
-                </div>
-                <div className="col">
-                    <div className={JCStyle.card}>gauys</div>
-                </div>
-                <div className="col">
-                    <div className={JCStyle.card}>how are you</div>
-                </div>
+        <div className="container">
 
-                <div className="col">
-                    <div className={JCStyle.card}>how are you</div>
-                </div>
-                <div className="col">
-
-                    <div className={JCStyle.card}>how are you</div>
-                </div>
-                <div className="col">
-
-                    <div className={JCStyle.card}>how are you</div>
-                </div>
-
-                <div className="col">
-
-                    <div className={JCStyle.card}>how are you</div>
-                </div>
-                <div className="col">
-
-                    <div className={JCStyle.card}>how are you</div>
-                </div>
-
-                <div className="col">
-
-                    <div className={JCStyle.card}>how are you</div>
-                </div>
-                <div className="col">
-
-                    <div className={JCStyle.card}>how are you</div>
-                </div>
-                <div className="col">
-
-                    <div className={JCStyle.card}>how are you</div>
-                </div>
-                <div className="col">
-
-                    <div className={JCStyle.card}>how are you</div>
-                </div>
-
-
-            </div>
-
-
+            <Carousel>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src="https://via.placeholder.com/800x400"
+                        alt="First slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>What we provide</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100"
+                        src="https://via.placeholder.com/800x400"
+                        alt="Second slide"
+                    />
+                    <Carousel.Caption>
+                        <h3>Second slide label</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+            </Carousel>
         </div>
     );
-
 }
 
 export default JobCard;

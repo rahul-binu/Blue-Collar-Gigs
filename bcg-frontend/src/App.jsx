@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 import Navbar from './assets/components/Navbar';
 import Footer from './assets/components/Footer';
 import Home from './assets/components/Home';
@@ -10,6 +13,7 @@ import Profile from './assets/components/Profile';
 import NewJobPost from './assets/components/NewJobPost';
 import WorkCreation from './assets/components/WorkCreation';
 import Skill from './assets/components/profile/Skill';
+import Service from './assets/components/Services';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,6 +32,7 @@ function App() {
           <Route path='/postnewwork' element={<NewJobPost />}></Route>
           <Route path='/creatework' element={<WorkCreation />}></Route>
           <Route path='/skill' element ={<Skill />} ></Route>
+          <Route path='/service' element={<Service />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

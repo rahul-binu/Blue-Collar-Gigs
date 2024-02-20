@@ -37,11 +37,17 @@ function Navbar() {
     function handleLogout() {
         AuthService.logout();
         setLoggedIn(false);
+        navigate('/');
     }
 
-    const goToProfile = () => {
-        getUserDetails();
-        navigate("/profile");
+    const goToProfile = async () => {
+        try {
+            await getUserDetails();
+            navigate("/profile");
+        } catch (error) {
+            console.error("Error fetching user details:", error);
+            // Handle error if needed
+        }
     }
 
     return (
@@ -56,7 +62,7 @@ function Navbar() {
                     <div className="col">
                         {<span className='text-dark' onClick={handleLogout}>Logout</span>}{/*
                         <span className='text-dark' onClick={AuthService.logout2}>Logout2</span> */}
-                        <span className="text-danger" onClick={getProfileAction}> test actions</span>
+                        {/* <span className="text-danger" onClick={getUserDetails}> test actions</span> */}
                     </div>
 
                     <div className="col-sm-6 col-md-6 col-lg-3 mx-5 text-end">

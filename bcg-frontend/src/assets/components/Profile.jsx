@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 import '../styles/Profile.css';
-import { createProfile } from "../services/profile";
+import { createProfile, getProfileData } from "../services/profile";
 import ProfileSide from "./profile/profileSide";
 
 function Profile() {
 
-    const [profilePhoto, setProfilePhoto] = useState('');
+    const id = localStorage.getItem("userId");
+
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -16,7 +17,27 @@ function Profile() {
     const [state, setState] = useState('');
     const [pincode, setPincode] = useState('');
     const [bio, setBio] = useState('');
-    const userId = 12;
+    //const userId = 12;
+
+    useEffect(() => {
+        if (id) {
+            getProfileData(id).then((response) => {
+                console.log("============>",response.data)
+                setFirstName(response.data.profileFirstName);
+                setLastName(response.data.profileLastName);
+                setEmail(response.data.userEmail);
+                setMobile(response.data.userPhone);
+                setAddress(response.data.address);
+                setDistrict(response.data.district);
+                setState(response.data.state);
+                setPincode(response.data.pincode);
+                setBio(response.data.aboutUser);
+              //  setProfilePhoto(response.data.profilePic);
+            }).catch(error => {
+                console.log(error);
+            })
+        }
+    }, [])    
 
     function handleProfilePhoto(e) {
         setProfilePhoto(e.target.value);
@@ -67,8 +88,8 @@ function Profile() {
                                         </div>
                                         <div className="col d-flex flex-column flex-sm-row justify-content-between mb-3">
                                             <div className="text-center text-sm-left mb-2 mb-sm-0">
-                                                <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">Ram Sam</h4>
-                                                <p className="mb-0">@12343456</p>
+                                                <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">{firstName} {lastName}</h4>
+                                                <p className="mb-0"></p>
                                                 <div>
                                                     <div className="mt-2">
                                                         <label className="btn btn-primary">
@@ -91,7 +112,7 @@ function Profile() {
                                             <label htmlFor="" className="mx-3 mb-1">First Name</label>
                                             <input type='email' autoComplete="new-password"
                                                 onChange={(e) => setFirstName(e.target.value)}
-                                                className='form-control'
+                                                className='form-control' value={firstName}
                                                 placeholder="First Name" />
                                             {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
                                         </div>
@@ -99,7 +120,8 @@ function Profile() {
                                             <label htmlFor="" className="mx-3 mb-1">Last Name</label>
                                             <input type='email' autoComplete="new-password"
                                                 onChange={(e) => setLastName(e.target.value)}
-                                                className='form-control' placeholder="Last Name" />
+                                                className='form-control' value={lastName}
+                                                placeholder="Last Name" />
                                             {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
                                         </div>
                                     </div>
@@ -110,7 +132,7 @@ function Profile() {
                                                 <label htmlFor="" className="mx-3 mb-1">Email</label>
                                                 <input type='email' autoComplete="new-password"
                                                     onChange={(e) => setEmail(e.target.value)}
-                                                    className='form-control'
+                                                    className='form-control'value={email}
                                                     placeholder="user@example.com" />
                                                 {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
                                             </div>
@@ -120,9 +142,9 @@ function Profile() {
                                         <div className="col text-start">
                                             <div className="form-group">
                                                 <label htmlFor="" className="mx-3 mb-1">Mobile</label>
-                                                <input type='email' autoComplete="new-password"
+                                                <input type='number' autoComplete="new-password"
                                                     onChange={(e) => setMobile(e.target.value)}
-                                                    className='form-control'
+                                                    className='form-control'value={mobile}
                                                     placeholder="9876543210" />
                                                 {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
                                             </div>
@@ -133,7 +155,7 @@ function Profile() {
                                         <div className="col mb-2 text-start">
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">Address</label>
-                                                <textarea className="form-control" rows="2"
+                                                <textarea className="form-control" rows="2" value={address}
                                                     onChange={(e) => setAddress(e.target.value)}
                                                     placeholder="House NO/Name, Street"></textarea>
                                             </div>
@@ -145,6 +167,7 @@ function Profile() {
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">District</label>
                                                 <input type="text" className="form-control" rows="2"
+                                                value={District}
                                                     onChange={(e) => setDistrict(e.target.value)}
                                                     placeholder="District" />
                                             </div>
@@ -153,6 +176,7 @@ function Profile() {
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">State</label>
                                                 <input type="text" className="form-control" rows="2"
+                                                value={state}
                                                     onChange={(e) => setState(e.target.value)}
                                                     placeholder="State" />
                                             </div>
@@ -160,7 +184,7 @@ function Profile() {
                                         <div className="col mb-2 text-start">
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">Pin Code</label>
-                                                <input type="text" className="form-control" rows="2"
+                                                <input type="text" className="form-control" rows="2"value={pincode}
                                                     onChange={(e) => setPincode(e.target.value)}
                                                     placeholder="654987" />
                                             </div>
@@ -171,7 +195,7 @@ function Profile() {
                                         <div className="col mb-2 text-start">
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">About</label>
-                                                <textarea className="form-control" rows="5"
+                                                <textarea className="form-control" rows="5"value={bio}
                                                     onChange={(e) => setBio(e.target.value)}
                                                     placeholder="My Bio"></textarea>
                                             </div>

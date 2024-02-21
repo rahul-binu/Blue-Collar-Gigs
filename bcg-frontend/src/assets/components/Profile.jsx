@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import '../styles/Profile.css';
 import { createProfile, getProfileData, updateProfileAPI } from "../services/profile";
+import { uploadToCloudinary } from './utils/uploadToCloudinary';
 import ProfileSide from "./profile/profileSide";
 
 function Profile() {
@@ -18,7 +19,17 @@ function Profile() {
     const [pincode, setPincode] = useState('');
     const [aboutUser, setAboutUser] = useState('');
     const [profileid, setProfileId] = useState('');
+    const [profilePic, setProfilePhoto] = useState('');
+
+    // const [isLoading, setLoading] = useState(false);
     //const userId = 12;
+
+    const handleSelectImage = async (event) => {
+        //setLoading(true);
+        const imageUrl = await uploadToCloudinary(event.target.files[0], "image");
+        console.log(imageUrl);
+        setProfilePhoto(imageUrl);
+    };
 
     useEffect(() => {
         if (userId) {
@@ -34,27 +45,22 @@ function Profile() {
                 setPincode(response.data.pincode);
                 setAboutUser(response.data.aboutUser);
                 setProfileId(response.data.profileId);
-                //  setProfilePhoto(response.data.profilePic);
+                setProfilePhoto(response.data.profilePic);
+
             }).catch(error => {
                 console.log(error);
             })
         }
-    }, [])
-
-    function handleProfilePhoto(e) {
-        setProfilePhoto(e.target.value);
-        //console.log(profilePhoto);
-    }
+    }, []);
 
     function saveProfile(e) {
         e.preventDefault();
 
         const profile = {
             userId, profileFirstName, profileLastName, userEmail, userPhone,
-            address, district, state, pincode, aboutUser
+            address, district, state, pincode, aboutUser, profilePic
         };
 
-        console.log(profile);
 
         createProfile(profile).then((response) => {
             console.log(response.data);
@@ -68,9 +74,9 @@ function Profile() {
         e.preventDefault();
         const newprofile = {
             userId, profileFirstName, profileLastName, userEmail, userPhone,
-            address, district, state, pincode, aboutUser
+            address, district, state, pincode, aboutUser, profilePic
         };
-
+        console.log(newprofile);
         updateProfileAPI(newprofile, userId).then((response) => {
             console.log(response.data);
             navigate('/home');
@@ -92,6 +98,14 @@ function Profile() {
             return ("Update Profile")
         } else {
             return ("Create Profile")
+        }
+    }
+
+    function profilePhoto() {
+        if (!profilePic) {
+            return (<img src="/images/blue-profile-logo-png-transparent-png.png" alt="" id='profilePhoto' />);
+        } else {
+            return (<img src={profilePic} alt="" id='profilePhoto' />)
         }
     }
 
@@ -117,7 +131,7 @@ function Profile() {
                                         <div className="col-12 col-sm-auto mb-3">
                                             <div className="mx-auto" >
                                                 <div className="d-flex justify-content-center align-items-center rounded" style={{ background: 'rgb(233, 236, 239)', height: '140px' }}>
-                                                    <img src="/images/blue-profile-logo-png-transparent-png.png" alt="" id='profilePhoto' />
+                                                    {profilePhoto()}
                                                 </div>
                                             </div>
                                         </div>
@@ -129,7 +143,7 @@ function Profile() {
                                                     <div className="mt-2">
                                                         <label className="btn btn-primary">
                                                             <i className="fa fa-fw fa-camera"></i>
-                                                            <input type='file' id='profilePhotoInput' className="file-input" onChange={handleProfilePhoto} />
+                                                            <input type='file' id='profilePhotoInput' className="file-input" onChange={handleSelectImage} />
                                                             <span>Change Photo</span>
                                                         </label>
                                                     </div>

@@ -9,7 +9,7 @@ const JobCard = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="https://via.placeholder.com/800x400"
+                        src="https://sociology.plus/wp-content/uploads/2022/08/Blue-Collar-Worker-Sociology-Definition-669x350.png"
                         alt="First slide"
                     />
                     <Carousel.Caption>

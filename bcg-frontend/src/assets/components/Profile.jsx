@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import '../styles/Profile.css';
-import { createProfile, getProfileData } from "../services/profile";
+import { createProfile, getProfileData, updateProfileAPI } from "../services/profile";
 import ProfileSide from "./profile/profileSide";
 
 function Profile() {
@@ -17,6 +17,7 @@ function Profile() {
     const [state, setState] = useState('');
     const [pincode, setPincode] = useState('');
     const [aboutUser, setAboutUser] = useState('');
+    const [profileid, setProfileId] = useState('');
     //const userId = 12;
 
     useEffect(() => {
@@ -32,6 +33,7 @@ function Profile() {
                 setState(response.data.state);
                 setPincode(response.data.pincode);
                 setAboutUser(response.data.aboutUser);
+                setProfileId(response.data.profileId);
                 //  setProfilePhoto(response.data.profilePic);
             }).catch(error => {
                 console.log(error);
@@ -62,6 +64,37 @@ function Profile() {
         })
     }
 
+    function updateProfile(e) {
+        e.preventDefault();
+        const newprofile = {
+            userId, profileFirstName, profileLastName, userEmail, userPhone,
+            address, district, state, pincode, aboutUser
+        };
+
+        updateProfileAPI(newprofile, userId).then((response) => {
+            console.log(response.data);
+            navigate('/home');
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+
+    function submitButton() {
+        if (profileid) {
+            return (<button className="btn btn-success mt-2 mb-2" onClick={updateProfile}>Save Changes</button>);
+        } else {
+            return (<button className="btn btn-success mt-2 mb-2" onClick={saveProfile}>Save </button>);
+        }
+    }
+
+    function pageTitle() {
+        if (profileid) {
+            return ("Update Profile")
+        } else {
+            return ("Create Profile")
+        }
+    }
+
     return (
         <>
             <div className="container py-5 h-100">
@@ -76,7 +109,7 @@ function Profile() {
                                 <div className="col-9">
 
                                     <div className="form-outline mb-3">
-                                        <h1 className="">Update Account</h1>
+                                        <h1 className="">{pageTitle()}</h1>
                                         <hr />
                                     </div>
 
@@ -144,9 +177,9 @@ function Profile() {
                                         <div className="col text-start">
                                             <div className="form-group">
                                                 <label htmlFor="" className="mx-3 mb-1">Mobile</label>
-                                                <input type='number' autoComplete="new-password"value={userPhone}
+                                                <input type='number' autoComplete="new-password" value={userPhone}
                                                     onChange={(e) => setUserPhone(e.target.value)}
-                                                    className='form-control' 
+                                                    className='form-control'
                                                     placeholder="9876543210" />
                                                 {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
                                             </div>
@@ -206,7 +239,7 @@ function Profile() {
 
                                     <div className="row">
                                         <div className="col text-end mx-3">
-                                            <button className="btn btn-success mt-2 mb-2" onClick={saveProfile}>Save Changes</button>
+                                            {submitButton()}
                                         </div>
                                     </div>
                                 </div>

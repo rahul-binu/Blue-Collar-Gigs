@@ -19,8 +19,7 @@ export const getUserDetails = async () => {
 
 export const createProfile = (profile) => axios.post(REST_API_BASE_URL, profile, { headers });
 
-    export const updateProfile = (profile) =>
-    axios.post(REST_API_BASE_URL, profile, { headers });
+export const updateProfileAPI = (newprofile, profileId) => axios.put(REST_API_BASE_URL + '/' + profileId, newprofile, { headers });
 
 
 

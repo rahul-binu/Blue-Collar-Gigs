@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 
 const Service = () => {
 
     const getJobCategories = () => axios.get("http://localhost:8080/auth/jobcat")
+
+    const navigate = useNavigate();
 
     const [jobCats, setJobCats] = useState([]);
 
@@ -32,7 +35,7 @@ const Service = () => {
                         <div className="col-4 mt-4 " key={jobCat.jcatId}>
                             <div className="card">
                                 <div className="card-header" style={{ background: 'rgb(233, 236, 239)', height: '140px' }}>
-                                    <img src="/images/blue-profile-logo-png-transparent-png.png" alt="" style={{width :'140px',height:'140px'}}/>
+                                    <img src="/images/blue-profile-logo-png-transparent-png.png" alt="" style={{ width: '140px', height: '140px' }} />
                                 </div>
                                 <div className="card-body">
                                     <p className="text-dark"><strong>{jobCat.jobCategory}</strong></p>

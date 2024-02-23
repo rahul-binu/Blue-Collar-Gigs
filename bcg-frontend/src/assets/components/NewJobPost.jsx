@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
+// changed to workCreation
+
 const NewJobPost = () => {
 
     const [isChecked, setChecked] = useState(false);

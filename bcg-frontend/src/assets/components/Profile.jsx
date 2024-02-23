@@ -64,7 +64,7 @@ function Profile() {
 
         createProfile(profile).then((response) => {
             console.log(response.data);
-            navigate('/home');
+            navigate('/');
         }).catch(error => {
             console.log(error);
         })
@@ -72,14 +72,17 @@ function Profile() {
 
     function updateProfile(e) {
         e.preventDefault();
+        
         const newprofile = {
             userId, profileFirstName, profileLastName, userEmail, userPhone,
             address, district, state, pincode, aboutUser, profilePic
         };
+
         console.log(newprofile);
+
         updateProfileAPI(newprofile, userId).then((response) => {
             console.log(response.data);
-            navigate('/home');
+            navigate('/');
         }).catch(error => {
             console.log(error);
         })

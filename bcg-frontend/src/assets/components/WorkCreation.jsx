@@ -7,15 +7,17 @@ import { createWork } from "../services/WorkService";
 
 const WorkCreation = () => {
 
-    const getJobCategories = () => axios.get("http://localhost:8080/auth/jobcat")
+    const getJobCategories = () => axios.get("http://localhost:8080/auth/jobcat");
+
+    const recruiterId = localStorage.getItem("userId");
 
     const [jobCats, setJobCats] = useState([]);
 
     const [jobTitle, setJobTitle] = useState('');
     const [jobCategory, setJobCategory] = useState('');
     const [jobDescription, setJobDescription] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
+    const [recruiterEmail, setEmail] = useState('');
+    const [recruiterPhone, setPhone] = useState('');
     const [location, setAddress] = useState('');
     const [district, setDistrict] = useState('');
     const [state, setState] = useState('');
@@ -44,10 +46,11 @@ const WorkCreation = () => {
 
         const workData = {
             jobTitle,
+            recruiterId,
             jobCategory,
             jobDescription,
-            email,
-            phone,
+            recruiterEmail,
+            recruiterPhone,
             location,
             district,
             state,
@@ -57,8 +60,24 @@ const WorkCreation = () => {
             expectedSkills,
             workEstimatedStartDate
         };
+    //     "jobId": 1,
+    // "recruiterId": 456,
+    // "jobTitle": "Software Engineer",
+    // "jobCategory": "Information Technology",
+    // "jobDescription": "This is a job description for a software engineer position.",
+    // "location": "City",
+    // "state": "State",
+    // "district": "District",
+    // "pincode": 123456,
+    // "estimatedTFTWork": "Full-time",
+    // "paymentPerDay": 100.0,
+    // "workEstimatedStartDate": "2024-02-22",
+    // "recruiterPhone": "123-456-7890",
+    // "expectedSkills": "Java, Python, SQL",
+    // "recruiterEmail": "recruiter@example.com",
+    // "transportation": "Available"
 
-       // console.log(workData);
+        console.log(workData);
 
        createWork(workData).then((response) => {
              console.log(response.data);

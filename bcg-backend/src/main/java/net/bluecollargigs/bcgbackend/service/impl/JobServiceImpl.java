@@ -51,9 +51,9 @@ public class JobServiceImpl implements JobService {
         job.setEstimatedTFTWork(updatedJob.getEstimatedTFTWork());
         job.setPaymentPerDay(updatedJob.getPaymentPerDay());
         job.setWorkEstimatedStartDate(updatedJob.getWorkEstimatedStartDate());
-        job.setExperienceNeeded(updatedJob.getExperienceNeeded());
+        job.setRecruiterPhone(updatedJob.getRecruiterPhone());
         job.setExpectedSkills(updatedJob.getExpectedSkills());
-        job.setPowerTools(updatedJob.getPowerTools());
+        job.setRecruiterEmail(updatedJob.getRecruiterEmail());
         job.setTransportation(updatedJob.getTransportation());
 
         Job updatedJobDetails = jobRepository.save(job);

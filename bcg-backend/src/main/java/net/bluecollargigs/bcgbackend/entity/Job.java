@@ -58,14 +58,14 @@ public class Job {
     @Column(name = "w_e_s_d")
     private Date workEstimatedStartDate;
 
-    @Column(name = "exp_needed")
-    private String experienceNeeded;
+    @Column(name = "r_phone")
+    private String recruiterPhone;
 
     @Column(name = "expected_skill")
     private String expectedSkills;
 
-    @Column(name = "power_tools")
-    private String powerTools;
+    @Column(name = "r_mail")
+    private String recruiterEmail;
 
     @Column(name = "transportation")
     private String transportation;

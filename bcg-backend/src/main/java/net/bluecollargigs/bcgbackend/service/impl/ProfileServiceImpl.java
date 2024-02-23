@@ -31,6 +31,11 @@ public class ProfileServiceImpl implements ProfileService {
         profile.setUserPhone(updatedProfile.getUserPhone());
         profile.setUserEmail(updatedProfile.getUserEmail());
         profile.setAboutUser(updatedProfile.getAboutUser());
+        profile.setAddress(updatedProfile.getAddress());
+        profile.setDistrict(updatedProfile.getDistrict());
+        profile.setState(updatedProfile.getState());
+        profile.setPincode(updatedProfile.getPincode());
+        profile.setProfilePic(updatedProfile.getProfilePic());
 
         Profile updatedProfileObj = profileRepository.save(profile);
 

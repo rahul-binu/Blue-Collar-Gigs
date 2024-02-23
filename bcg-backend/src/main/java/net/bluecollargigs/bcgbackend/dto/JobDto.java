@@ -24,9 +24,9 @@ public class JobDto {
     private String estimatedTFTWork;
     private Float paymentPerDay;
     private Date workEstimatedStartDate;
-    private String experienceNeeded;
+    private String recruiterPhone;
     private String expectedSkills;
-    private String powerTools;
+    private String recruiterEmail;
     private String transportation;    
     
 }

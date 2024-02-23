@@ -20,9 +20,9 @@ public class JobMapper {
                 job.getEstimatedTFTWork(),
                 job.getPaymentPerDay(),
                 job.getWorkEstimatedStartDate(),
-                job.getExperienceNeeded(),
+                job.getRecruiterPhone(),
                 job.getExpectedSkills(),
-                job.getPowerTools(),
+                job.getRecruiterEmail(),
                 job.getTransportation());
     }
 
@@ -41,9 +41,9 @@ public class JobMapper {
                 jobDto.getEstimatedTFTWork(),
                 jobDto.getPaymentPerDay(),
                 jobDto.getWorkEstimatedStartDate(),
-                jobDto.getExperienceNeeded(),
+                jobDto.getRecruiterPhone(),
                 jobDto.getExpectedSkills(),
-                jobDto.getPowerTools(),
+                jobDto.getRecruiterEmail(),
                 jobDto.getTransportation());
     }
 }

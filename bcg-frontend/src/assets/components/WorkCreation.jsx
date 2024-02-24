@@ -214,7 +214,7 @@ const WorkCreation = () => {
                                     <div className="row">
                                         <div className="col mb-2 text-start">
                                             <div className="form-group">
-                                                <label className="mb-1 mx-3">How Big Is Your Work</label>
+                                                <label className="mb-1 mx-3">Work Duration</label>
                                                 <input type="text" className="form-control" rows="2"
                                                     onChange={(e) => setJobDuration(e.target.value)}
                                                     placeholder="1/2, 1, 2, ect... day" />

@@ -24,3 +24,4 @@ export const updateProfileAPI = (newprofile, profileId) => axios.put(REST_API_BA
 
 
 export const getProfileData = (userId) => axios.get(REST_API_BASE_URL + '/' + userId, { headers });
+

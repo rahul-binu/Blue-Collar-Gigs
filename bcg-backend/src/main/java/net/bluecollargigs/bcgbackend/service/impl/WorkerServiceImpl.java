@@ -28,7 +28,7 @@ public class WorkerServiceImpl implements WorkerService {
     @Override
     public WorkerDto getWorkerById(Long workerId) {
         @SuppressWarnings("null")
-        Worker worker = workerRepository.findById(workerId)
+        Worker worker = workerRepository.findByUserId(workerId)
                 .orElseThrow(() -> new ResourceNotFoundException(workerId + " worker not found"));
         return WorkerMapper.mapToWorkerDto(worker);
     }

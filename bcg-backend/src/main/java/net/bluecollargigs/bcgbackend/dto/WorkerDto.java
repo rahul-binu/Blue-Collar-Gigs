@@ -16,8 +16,8 @@ public class WorkerDto {
     private Long workerId;
     private Long userId;
     private String skills;
-    private String experience;
-    private String education;
+    private String flanguage;
+    private String slanguage;
     private String certification;
     
 }

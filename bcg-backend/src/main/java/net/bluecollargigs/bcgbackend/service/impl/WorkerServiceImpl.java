@@ -39,8 +39,8 @@ public class WorkerServiceImpl implements WorkerService {
                 () -> new ResourceNotFoundException("NO worker found with " + userId));
 
         worker.setSkills(updatedWorker.getSkills());
-        worker.setExperience(updatedWorker.getExperience());
-        worker.setEducation(updatedWorker.getEducation());
+        worker.setFlanguage(updatedWorker.getFlanguage());
+        worker.setSlanguage(updatedWorker.getSlanguage());
         worker.setCertification(updatedWorker.getCertification());
 
         Worker updatedWorkerObj = workerRepository.save(worker);

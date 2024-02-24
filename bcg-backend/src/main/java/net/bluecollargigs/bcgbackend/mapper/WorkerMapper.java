@@ -10,8 +10,8 @@ public class WorkerMapper {
                 worker.getWorkerId(),
                 worker.getUserId(),
                 worker.getSkills(),
-                worker.getExperience(),
-                worker.getEducation(),
+                worker.getFlanguage(),
+                worker.getSlanguage(),
                 worker.getCertification()
                 );
 
@@ -22,8 +22,8 @@ public class WorkerMapper {
                 workerDto.getWorkerId(),
                 workerDto.getUserId(),
                 workerDto.getSkills(),
-                workerDto.getExperience(),
-                workerDto.getEducation(),
+                workerDto.getFlanguage(),
+                workerDto.getSlanguage(),
                 workerDto.getCertification()
                 );
     }

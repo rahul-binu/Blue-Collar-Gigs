@@ -33,11 +33,11 @@ public class Worker {
     @Column(name = "skills", nullable = false)
     private String skills;
 
-    @Column(name = "experience", nullable = false)
-    private String experience;
+    @Column(name = "f_lang", nullable = false)
+    private String flanguage;
 
-    @Column(name = "education", nullable = false)
-    private String education;
+    @Column(name = "s_lang", nullable = false)
+    private String slanguage;
 
     @Column(name = "certification", nullable = false)
     private String certification;

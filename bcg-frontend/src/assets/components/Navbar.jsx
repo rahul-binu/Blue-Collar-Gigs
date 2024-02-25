@@ -4,6 +4,9 @@ import * as Icon from 'react-bootstrap-icons';
 import { Dropdown } from 'react-bootstrap';
 
 import "/src/assets/styles/Navbar.css";
+
+import Home from './Home';
+
 import AuthService from '../services/AuthService';
 import { getProfileAction } from '../config/user';
 import { getUserDetails } from '../services/profile';
@@ -52,26 +55,53 @@ function Navbar() {
         }
     }
 
-    // useEffect(
-    //     () => {
-    //         const UT = UserType();
-    //         console.log(UT);
+    function gotToServices() {
+        navigate('/service')
+    }
 
-    //     }, []
-    // );
+
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const handleMouseEnter = () => {
+        setShowDropdown(true);
+    };
+
+    const handleMouseLeave = () => {
+        setShowDropdown(false);
+    };
 
 
     function NavBtnUT() {
-        const UT = UserType(); // Assuming UserType() returns "worker" based on the console log
 
-        console.log(UT, "<========"); // Output: "worker"
+        const UT = UserType(); // 
+
+        // console.log(UT, "<========"); 
 
         if (UT) {
             if (UT == 'worker') {
                 return (
-                    <>
+                    <Dropdown
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        show={showDropdown}
+                    >
+                        <span
+                            className="dropdown-toggle"
+                            style={{
+                                cursor: 'pointer',
+                                textDecoration: 'none',
+                                marginRight: '10px', // Add some margin for spacing
+                            }}
+                        >
+                            Hover Me
+                        </span>
 
-                    </>
+                        <Dropdown.Menu>
+                            <Dropdown.Item onClick={gotToServices}>Services</Dropdown.Item>
+                            <Dropdown.Item onClick={viewWorks}>New Works</Dropdown.Item>
+                            <Dropdown.Item >Action 3</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
                 );
             } else {
                 return "REC"; // This is where "REC" is being returned
@@ -80,6 +110,13 @@ function Navbar() {
             return "No Ut";
         }
     }
+
+    const viewWorks = () => {
+        const targetDiv = document.getElementById('works');
+        if (targetDiv) {
+          targetDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+      };
 
     return (
         <>
@@ -90,11 +127,8 @@ function Navbar() {
                         <h2 className="ps-4" onClick={goToHome}><a href='' className='blueCollarGigsTitle text-decoration-none'>Blue Collar Gigs</a></h2>
                     </div>
 
-                    <div className="col text-start">
+                    <div className="col text-start d-flex">
                         <span className='text-dark'>{NavBtnUT()}</span>
-                        { }{/*
-                        <span className='text-dark' onClick={AuthService.logout2}>Logout2</span> */}
-                        {/* <span className="text-danger" onClick={getUserDetails}> test actions</span> */}
                     </div>
 
                     <div className="col-sm-6 col-md-6 col-lg-3 mx-5 text-end">
@@ -103,8 +137,9 @@ function Navbar() {
 
                             <Dropdown >
                                 <Dropdown.Toggle className='text-success'
-                                variant="" style={{
-                                    borderBottom: '1px solid green'}}>
+                                    variant="" style={{
+                                        borderBottom: '1px solid green'
+                                    }}>
                                     Profile
                                 </Dropdown.Toggle>
 
@@ -116,9 +151,9 @@ function Navbar() {
                                     </Dropdown.Item>
                                     <Dropdown.Item >
                                         <span className='text-dark' onClick={handleLogout}>
-                                            <span className='text-danger mx-1' style={{fontSize:'20px'}}><Icon.XOctagon/>
+                                            <span className='text-danger mx-1' style={{ fontSize: '20px' }}><Icon.XOctagon />
                                             </span>Logout</span>
-                                        </Dropdown.Item>
+                                    </Dropdown.Item>
                                     {/* <Dropdown.Item href="#/action-3"></Dropdown.Item> */}
                                 </Dropdown.Menu>
                             </Dropdown>

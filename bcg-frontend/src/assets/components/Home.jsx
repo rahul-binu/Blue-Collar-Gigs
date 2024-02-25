@@ -92,7 +92,7 @@ function Home() {
         <JobCard />
       </div>
 
-      <div className="container">
+      <div className="container" id="works">
         <WorkSlide />
       </div>
 

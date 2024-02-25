@@ -11,7 +11,7 @@ export const getUserDetails = async () => {
         const response = await axios.get(REST_API_BASE_URL, { headers });
         localStorage.setItem('userId', JSON.stringify(response.data.id));
         localStorage.setItem('ut',(response.data.userType));
-        // console.log(response.data);
+         console.log(response.data);
         return response.data;
     } catch (error) {
         console.error('Error fetching user details:', error);

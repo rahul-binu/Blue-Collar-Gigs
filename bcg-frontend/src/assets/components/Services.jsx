@@ -42,6 +42,19 @@ const Service = () => {
 
     return (
         <div className="container-fluid">
+
+            <div className="row text-center text mb-4 mt-3" style={{ position: 'relative' }}>
+                <img src="/images/FaveTools.gif" alt="" style={{ width: '100%' }} />
+                <h1
+                    style={{
+                        position: 'absolute', top: '50%', left: '50%',
+                        transform: 'translate(-50%, -50%)', zIndex: '999',
+                        fontSize: '12em',opacity:'.8'
+                    }}>
+                    Services we provide
+                </h1>
+            </div>
+
             <div className="container mt-4">
                 <div className="row justify-content-center">
 

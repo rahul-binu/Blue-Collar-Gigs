@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { authHeaderMaker } from '../config/tokens';
+import { json } from 'react-router-dom';
 
 const REST_API_BASE_URL = 'http://localhost:8080/api/profile';
 const headers = authHeaderMaker(); // Call the function to get headers
@@ -9,6 +10,7 @@ export const getUserDetails = async () => {
     try {
         const response = await axios.get(REST_API_BASE_URL, { headers });
         localStorage.setItem('userId', JSON.stringify(response.data.id));
+        localStorage.setItem('ut',JSON.stringify(response.data.userType));
         // console.log(response.data);
         return response.data;
     } catch (error) {

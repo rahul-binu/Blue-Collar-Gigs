@@ -67,7 +67,7 @@ public class Job {
     @Column(name = "r_mail")
     private String recruiterEmail;
 
-    @Column(name = "transportation")
-    private String transportation;
+    @Column(name = "job_staus")
+    private String jobStatus;
 
 }

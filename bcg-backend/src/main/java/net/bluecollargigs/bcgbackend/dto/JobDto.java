@@ -27,6 +27,6 @@ public class JobDto {
     private String recruiterPhone;
     private String expectedSkills;
     private String recruiterEmail;
-    private String transportation;    
+    private String jobStatus;    
     
 }

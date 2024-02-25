@@ -54,7 +54,7 @@ public class JobServiceImpl implements JobService {
         job.setRecruiterPhone(updatedJob.getRecruiterPhone());
         job.setExpectedSkills(updatedJob.getExpectedSkills());
         job.setRecruiterEmail(updatedJob.getRecruiterEmail());
-        job.setTransportation(updatedJob.getTransportation());
+        job.setJobStatus(updatedJob.getJobStatus());
 
         Job updatedJobDetails = jobRepository.save(job);
 

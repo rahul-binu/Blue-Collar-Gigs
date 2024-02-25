@@ -23,7 +23,7 @@ public class JobMapper {
                 job.getRecruiterPhone(),
                 job.getExpectedSkills(),
                 job.getRecruiterEmail(),
-                job.getTransportation());
+                job.getJobStatus());
     }
 
     public static Job mapToJob(JobDto jobDto) {
@@ -44,6 +44,6 @@ public class JobMapper {
                 jobDto.getRecruiterPhone(),
                 jobDto.getExpectedSkills(),
                 jobDto.getRecruiterEmail(),
-                jobDto.getTransportation());
+                jobDto.getJobStatus());
     }
 }

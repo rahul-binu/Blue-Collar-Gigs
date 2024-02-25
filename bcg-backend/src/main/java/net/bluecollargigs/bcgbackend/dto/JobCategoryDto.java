@@ -13,4 +13,5 @@ public class JobCategoryDto {
     private Long jCatId;
     private String jobCategory;
     private String jobDescription;
+    private String jobCaImg;
 }

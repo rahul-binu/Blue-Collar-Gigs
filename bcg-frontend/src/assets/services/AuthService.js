@@ -14,8 +14,9 @@ class AuthService {
         //console.log(response.data)
         if (response.data) {
             localStorage.setItem('user', JSON.stringify(response.data.token));
-            //await getUserDetails();
-            // console.log("==========>", user);
+           
+            getUserDetails();
+           //  console.log("==========>", response.data);
             //console.log (JSON.parse(localStorage.getItem('user')));
         }
         //console.log(response.data);
@@ -28,6 +29,7 @@ class AuthService {
         console.log("User logged out:", user);
         localStorage.removeItem('user');
         localStorage.removeItem('userId');
+        localStorage.removeItem('ut')
     }
 
     getCurrentUser() {

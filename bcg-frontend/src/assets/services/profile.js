@@ -10,7 +10,7 @@ export const getUserDetails = async () => {
     try {
         const response = await axios.get(REST_API_BASE_URL, { headers });
         localStorage.setItem('userId', JSON.stringify(response.data.id));
-        localStorage.setItem('ut',JSON.stringify(response.data.userType));
+        localStorage.setItem('ut',(response.data.userType));
         // console.log(response.data);
         return response.data;
     } catch (error) {

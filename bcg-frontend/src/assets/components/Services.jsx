@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
+import styles from "/src/assets/styles/Services.module.css";
 
 const Service = () => {
 
@@ -9,6 +10,7 @@ const Service = () => {
     const navigate = useNavigate();
 
     const [jobCats, setJobCats] = useState([]);
+    const [jobCIMG, setJobCIMG] = useState('');
 
     useEffect(() => {
         getAllJobCategories();
@@ -17,11 +19,24 @@ const Service = () => {
     function getAllJobCategories() {
         getJobCategories().then((response) => {
             setJobCats(response.data);
+            setJobCIMG(response.data.jobCaImg);
             console.log(response.data);
         }).catch(error => {
             console.log(error);
         })
 
+    }
+
+    function JCIMG() {
+        if (jobCIMG) {
+            return (
+                <img src="/images/blue-profile-logo-png-transparent-png.png" alt="" style={{ width: '140px', height: '140px' }} />
+            );
+        } else {
+            return (
+                null
+            );
+        }
     }
 
 
@@ -31,11 +46,10 @@ const Service = () => {
                 <div className="row justify-content-center">
 
                     {jobCats.map(jobCat => (
-
-                        <div className="col-4 mt-4 " key={jobCat.jcatId}>
+                        <div className="col-4 mt-4" key={jobCat.jcatId}>
                             <div className="card">
-                                <div className="card-header" style={{ background: 'rgb(233, 236, 239)', height: '140px' }}>
-                                    <img src="/images/blue-profile-logo-png-transparent-png.png" alt="" style={{ width: '140px', height: '140px' }} />
+                                <div className={`${styles.header} card-header`} id={`${styles.card}`}>
+                                    <img src={jobCat.jobCaImg} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                 </div>
                                 <div className="card-body">
                                     <p className="text-dark"><strong>{jobCat.jobCategory}</strong></p>
@@ -43,8 +57,8 @@ const Service = () => {
                                 </div>
                             </div>
                         </div>
-
                     ))}
+
 
                 </div>
             </div>

@@ -80,31 +80,40 @@ function Navbar() {
         if (UT) {
             if (UT == 'worker') {
                 return (
-                    <Dropdown
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                        show={showDropdown}
-                    >
-                        <span
-                            className="dropdown-toggle"
-                            style={{
-                                cursor: 'pointer',
-                                textDecoration: 'none',
-                                marginRight: '10px', // Add some margin for spacing
-                            }}
-                        >
-                            Hover Me
-                        </span>
+                    // <Dropdown
+                    //     onMouseEnter={handleMouseEnter}
+                    //     onMouseLeave={handleMouseLeave}
+                    //     show={showDropdown}
+                    // >
+                    //     <span
+                    //         className="dropdown-toggle"
+                    //         style={{
+                    //             cursor: 'pointer',
+                    //             textDecoration: 'none',
+                    //             marginRight: '10px', // Add some margin for spacing
+                    //         }}
+                    //     >
+                    //         Hover Me
+                    //     </span>
 
-                        <Dropdown.Menu>
-                            <Dropdown.Item onClick={gotToServices}>Services</Dropdown.Item>
-                            <Dropdown.Item onClick={viewWorks}>New Works</Dropdown.Item>
-                            <Dropdown.Item >Action 3</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                    //     <Dropdown.Menu>
+                    //         <Dropdown.Item onClick={gotToServices}>Services</Dropdown.Item>
+                    //         <Dropdown.Item onClick={viewWorks}>New Works</Dropdown.Item>
+                    //         <Dropdown.Item >Action 3</Dropdown.Item>
+                    //     </Dropdown.Menu>
+                    // </Dropdown>
+                    <>
+                    <span className="navbar-goTo-statements mx-4" onClick={gotToServices}><strong>Services</strong></span>
+                    <span className="navbar-goTo-statements mx-4"onClick={viewWorks}><strong>New Work Posts</strong></span>
+                    </>
                 );
             } else {
-                return "REC"; // This is where "REC" is being returned
+                return (
+                    <>
+                     <span className="navbar-goTo-statements mx-4" onClick={gotToServices}><strong>Services</strong></span>
+                    <span className="navbar-goTo-statements mx-4"onClick={goToCreateWork}><strong>ADD New Work</strong></span>
+                    </>
+                );
             }
         } else {
             return "No Ut";
@@ -118,6 +127,10 @@ function Navbar() {
         }
       };
 
+      function goToCreateWork(){
+        navigate('/creatework')
+      }
+
     return (
         <>
             <div className="container-fluid">
@@ -127,11 +140,11 @@ function Navbar() {
                         <h2 className="ps-4" onClick={goToHome}><a href='' className='blueCollarGigsTitle text-decoration-none'>Blue Collar Gigs</a></h2>
                     </div>
 
-                    <div className="col text-start d-flex">
+                    <div className="col text-end">
                         <span className='text-dark'>{NavBtnUT()}</span>
                     </div>
 
-                    <div className="col-sm-6 col-md-6 col-lg-3 mx-5 text-end">
+                    <div className="col-sm-6 col-md-6 col-lg-2 mx-5 text-end">
                         {loggedIn ? (
 
 

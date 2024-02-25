@@ -8,6 +8,7 @@ import ProfileSide from "./profile/profileSide";
 function Profile() {
 
     const userId = localStorage.getItem("userId");
+    const userType = localStorage.getItem('ut');
 
     const [profileFirstName, setProfileFirstName] = useState('');
     const [profileLastName, setProfileLastName] = useState('');
@@ -153,8 +154,8 @@ function Profile() {
                                                 </div>
                                             </div>
                                             <div className="text-center text-sm-right">
-                                                <span className="">worker</span>
-                                                <div className="text-muted"><small>Joined 09 Dec 2017</small></div>
+                                                <span className="">Welcome {userType}</span>
+                                                <div className="text-muted"><small>Explore what we offer that meets your needs</small></div>
                                             </div>
                                         </div>
                                     </div>

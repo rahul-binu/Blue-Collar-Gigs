@@ -1,22 +1,43 @@
-.blueCollarGigsTitle{
-color: black;
-padding-left: 10%;
+.blueCollarGigsTitle {
+    color: black;
+    padding-left: 10%;
 }
 
-.navbar{
-    box-shadow:1px 0px 1px black;
+.navbar {
+    box-shadow: 1px 0px 1px black;
 }
 
-#loginRegister{
-cursor: pointer;
-color:black;
+#loginRegister {
+    cursor: pointer;
+    color: black;
 }
 
-#profileIcon{
-   font-size: 25px;
-   color: #a92b2b;
-   cursor: pointer;
+#profileIcon {
+    font-size: 25px;
+    color: #a92b2b;
+    cursor: pointer;
 }
+
+.navbar-goTo-statements {
+    position: relative; /* Ensure relative positioning for the ::before pseudo-element */
+    cursor: pointer;
+}
+
+.navbar-goTo-statements::before {
+    content: ''; 
+    position: absolute; 
+    bottom: -2px; 
+    left: 0; 
+    width: 0;
+    height: 2px; 
+    background-color: black; 
+    transition: width 0.3s ease-in-out;
+}
+
+.navbar-goTo-statements:hover::before {
+    width: 100%; /* Expand the width to 100% on hover */
+}
+
 
 /* Navy Blue (#001F3F)
 Silver (#C0C0C0)

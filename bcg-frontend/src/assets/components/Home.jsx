@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "/src/assets/styles/Home.css";
 import * as Icon from 'react-bootstrap-icons';
 import JobCard from './JobCard';
 import WorkSlide from './Work/WorkSlides';
+import { getUserDetails } from '../services/profile';
 
 
 function Home() {
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getUserDetails();
+  }, [])
 
   function goToService() {
     navigate('/service');

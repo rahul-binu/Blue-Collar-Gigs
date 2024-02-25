@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import AuthService from "../services/AuthService";
+import { getUserDetails } from "../services/profile";
+import { waitAndReturnNull } from '../config/wait';
 
 function Login() {
 
@@ -23,28 +25,22 @@ function Login() {
         navigate('/Home');
         window.location.reload(); // Refresh the page
     }
-    
 
-    function LoginUser(e) {
+
+    const LoginUser = async (e) => { // Mark function as async
         e.preventDefault();
         const user = { email, password };
 
-       // console.log(user);
-
-        AuthService.login(user.email, user.password)
-            .then(response => {
-                // Authentication successful, update UI (e.g., redirect to dashboard)
-                console.log("User logged in successfully");
-                goToHome();
-                // Redirect to dashboard or other authenticated route
-            })
-            .catch(error => {
-                // Authentication failed, handle error (e.g., display error message)
-                //console.error("Login failed:", error.message, user);
-                // Display error message to the user
-            });
-
+        try {
+            await AuthService.login(user.email, user.password);
+            console.log("User logged in successfully");
+            goToHome();
+        } catch (error) {
+            console.error("Login failed:", error.message, user);
+            // Display error message to the user
+        }
     }
+
 
     return (
         <>

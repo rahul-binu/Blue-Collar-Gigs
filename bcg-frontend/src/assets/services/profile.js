@@ -7,6 +7,7 @@ const headers = authHeaderMaker(); // Call the function to get headers
 
 //get user details with jwt user id
 export const getUserDetails = async () => {
+  // console.log("hai")
     try {
         const response = await axios.get(REST_API_BASE_URL, { headers });
         localStorage.setItem('userId', JSON.stringify(response.data.id));
@@ -14,8 +15,8 @@ export const getUserDetails = async () => {
          console.log(response.data);
         return response.data;
     } catch (error) {
-        console.error('Error fetching user details:', error);
-        throw error; // Rethrow the error to handle it further if needed
+        console.error('Error fetching user details:');
+       // throw error; // Rethrow the error to handle it further if needed
     }
 };
 

@@ -57,6 +57,7 @@ function Navbar() {
 
     function gotToServices() {
         navigate('/service')
+        window.location.reload();
     }
 
 

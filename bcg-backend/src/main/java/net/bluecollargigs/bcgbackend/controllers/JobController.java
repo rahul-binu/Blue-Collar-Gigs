@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
 @RestController
 @RequestMapping("api")
 @CrossOrigin("*")
@@ -44,14 +43,20 @@ public class JobController {
 
     @DeleteMapping("/jobs/{id}")
     public String deleteJob(@PathVariable("id") Long JobId) {
-        
+
         return "Job Removed";
     }
 
-    @PutMapping("job/{id}")
-    public ResponseEntity<JobDto> updateJob(@PathVariable ("id")Long id, @RequestBody JobDto jobDto) {
-       
+    @PutMapping("/job/{id}")
+    public ResponseEntity<JobDto> updateJob(@PathVariable("id") Long id, @RequestBody JobDto jobDto) {
+
         JobDto updatedJob = jobService.updateJob(id, jobDto);
+        return ResponseEntity.ok(updatedJob);
+    }
+
+    @PutMapping("/jobstatus/{id}")
+    public ResponseEntity<JobDto> updateJobStatus(@PathVariable("id") Long id, @RequestBody JobDto jobDto) {
+        JobDto updatedJob = jobService.updateJobStatus(id, jobDto);
         return ResponseEntity.ok(updatedJob);
     }
 

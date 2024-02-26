@@ -60,4 +60,15 @@ public class JobServiceImpl implements JobService {
 
         return JobMapper.mapToJobDto(updatedJobDetails);
     }
+
+    public JobDto updateJobStatus(Long id, JobDto updatedStatus) {
+        Job job = jobRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No job" + id));
+
+        job.setJobStatus(updatedStatus.getJobStatus());
+
+        Job updatedJobDetails = jobRepository.save(job);
+
+        return JobMapper.mapToJobDto(updatedJobDetails);
+    }
 }

@@ -17,12 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000")
 public class JobController {
 
     private JobService jobService;
@@ -57,8 +56,8 @@ public class JobController {
     }
 
     @PutMapping("/job/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<JobDto> updateJob(@PathVariable("id") Long id, @RequestBody JobDto jobDto) {
-
         JobDto updatedJob = jobService.updateJob(id, jobDto);
         return ResponseEntity.ok(updatedJob);
     }

@@ -3,12 +3,14 @@ import * as Icon from 'react-bootstrap-icons';
 import { getAllWorks } from "../services/WorkService";
 import { UserId } from './utils/UserLocalStoreVal';
 import { updateWorkAPI } from '../services/WorkService';
-
+import { useNavigate } from 'react-router-dom';
 // changed to workCreation
 
 const MyPosts = () => {
 
     const usId = UserId();
+
+    const navigate = useNavigate();
 
     const [works, setWorks] = useState([]);
 
@@ -43,6 +45,11 @@ const MyPosts = () => {
         }).catch(error => {
             console.log(error);
         });
+    }
+
+    function editJobBtn(jid) {
+        localStorage.setItem('jid', jid);
+        navigate('/editwork');
     }
 
 
@@ -117,7 +124,7 @@ const MyPosts = () => {
                                             </div>
 
                                             <div className="col">
-                                                <button className="btn btn-warning mx-1">Edit <span><Icon.PencilFill /></span></button>
+                                                <button className="btn btn-warning mx-1" onClick={() => editJobBtn(work.jobId)}>Edit <span><Icon.PencilFill /></span></button>
                                                 {work.jobStatus !== 'inactive' ? (
                                                     <button className="btn btn-success mx-1" title='mark as Incompleated'
                                                         onClick={() => workStatusUpdate(work.jobId, 'inactive')}>Done <span><Icon.CheckCircle /></span></button>

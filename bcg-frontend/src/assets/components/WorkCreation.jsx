@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import * as Icon from 'react-bootstrap-icons';
+
 import styles from "/src/assets/styles/WorkCreation.module.css";
 
 import { createWork } from "../services/WorkService";
@@ -10,6 +12,8 @@ const WorkCreation = () => {
     const getJobCategories = () => axios.get("http://localhost:8080/auth/jobcat");
 
     const recruiterId = localStorage.getItem("userId");
+
+    const navigate = useNavigate();
 
     const [jobCats, setJobCats] = useState([]);
 

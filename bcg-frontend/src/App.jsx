@@ -10,7 +10,7 @@ import Home from './assets/components/Home';
 import Register from './assets/components/Register';
 import Login from './assets/components/Login';
 import Profile from './assets/components/Profile';
-import NewJobPost from './assets/components/NewJobPost';
+import MyPosts from './assets/components/MyPosts';
 import WorkCreation from './assets/components/WorkCreation';
 import Skill from './assets/components/profile/Skill';
 import Service from './assets/components/Services';
@@ -29,7 +29,7 @@ function App() {
           <Route path='/Register' element={<Register />} />
           <Route path='/login' element={<Login />}></Route>
           <Route path='/profile' element={<Profile />}></Route>
-          <Route path='/postnewwork' element={<NewJobPost />}></Route>
+          <Route path='/myposts' element={<MyPosts />}></Route>
           <Route path='/creatework' element={<WorkCreation />}></Route>
           <Route path='/skill' element ={<Skill />} ></Route>
           <Route path='/service' element={<Service />}></Route>

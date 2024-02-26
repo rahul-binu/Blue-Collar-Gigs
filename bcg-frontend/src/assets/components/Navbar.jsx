@@ -115,7 +115,7 @@ function Navbar() {
                 return (
                     <>
                      <span className="navbar-goTo-statements mx-4" onClick={gotToServices}><strong>Services</strong></span>
-                    <span className="navbar-goTo-statements mx-4"onClick={goToCreateWork}><strong>ADD New Work</strong></span>
+                    <span className="navbar-goTo-statements mx-4"onClick={goToCreateWork}><strong>Add New Work</strong></span>
                     <span className="navbar-goTo-statements mx-4"onClick={goToMyWorks}><strong>My Posts</strong></span>
                     </>
                 );

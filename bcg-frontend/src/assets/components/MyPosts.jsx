@@ -52,6 +52,9 @@ const MyPosts = () => {
         navigate('/editwork');
     }
 
+    function goToJobDetails(id) {
+        navigate(`/workdetails/${id}`);
+    }
 
     return (
         <>
@@ -79,6 +82,16 @@ const MyPosts = () => {
                                         <div className="row mb-2 ">
                                             <div className="col">
                                                 <h5>{work.jobTitle}</h5>
+                                            </div>
+                                            <div className="col d-flex justify-content-end">
+                                                <div className=" align-item-center bg-secondary text-center text-light"
+                                                    style={{ backgroundColor: 'black', borderRadius: '50px', cursor: 'pointer', transition: 'transform 0.3s ease' }}
+                                                    onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+                                                    onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                                                    onClick={() => goToJobDetails(work.jobId)}
+                                                >
+                                                    <Icon.ThreeDotsVertical />
+                                                </div>
                                             </div>
                                         </div>
 

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("api")
@@ -40,6 +42,13 @@ public class JobController {
         List<JobDto> jobs = jobService.getAllJob();
         return ResponseEntity.ok(jobs);
     }
+
+    @GetMapping("/job/{id}")
+    public ResponseEntity<JobDto> getJobById(@PathVariable("id") Long id) {
+        JobDto jobs = jobService.getJobById(id);
+        return ResponseEntity.ok(jobs);
+    }
+    
 
     @DeleteMapping("/jobs/{id}")
     public String deleteJob(@PathVariable("id") Long JobId) {

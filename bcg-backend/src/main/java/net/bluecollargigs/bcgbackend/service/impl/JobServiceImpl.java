@@ -71,4 +71,11 @@ public class JobServiceImpl implements JobService {
 
         return JobMapper.mapToJobDto(updatedJobDetails);
     }
+
+    public JobDto getJobById(Long id) {
+        Job job = jobRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No job" + id));
+
+        return JobMapper.mapToJobDto(job);
+    }
 }

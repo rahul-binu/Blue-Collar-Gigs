@@ -1,5 +1,7 @@
 package net.bluecollargigs.bcgbackend.service;
 
+import java.util.List;
+
 import net.bluecollargigs.bcgbackend.dto.ProfileDto;
 
 public interface ProfileService {
@@ -9,4 +11,6 @@ public interface ProfileService {
     ProfileDto updateProfile(Long id, ProfileDto updatedProfile);
 
     ProfileDto getProfileDetails(Long id);
+
+    List<ProfileDto> getAllProfiles();
 }

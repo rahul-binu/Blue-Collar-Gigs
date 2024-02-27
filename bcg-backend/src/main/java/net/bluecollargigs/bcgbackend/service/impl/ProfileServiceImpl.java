@@ -1,5 +1,8 @@
 package net.bluecollargigs.bcgbackend.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -7,6 +10,7 @@ import net.bluecollargigs.bcgbackend.dto.ProfileDto;
 import net.bluecollargigs.bcgbackend.entity.Profile;
 import net.bluecollargigs.bcgbackend.exception.ResourceNotFoundException;
 import net.bluecollargigs.bcgbackend.mapper.ProfileMapper;
+import net.bluecollargigs.bcgbackend.mapper.WorkerMapper;
 import net.bluecollargigs.bcgbackend.repository.ProfileRepository;
 import net.bluecollargigs.bcgbackend.service.ProfileService;
 
@@ -46,5 +50,11 @@ public class ProfileServiceImpl implements ProfileService {
         Profile profile = profileRepository.findByUserId(id)
                 .orElseThrow(() -> new ResourceNotFoundException("no Profile"));
         return ProfileMapper.mapToProfileDto(profile);
+    }
+
+    public List<ProfileDto> getAllProfiles() {
+        List<Profile> profiles = profileRepository.findAll();
+        return profiles.stream().map((profile) -> ProfileMapper.mapToProfileDto(profile))
+                .collect(Collectors.toList());
     }
 }

@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import net.bluecollargigs.bcgbackend.dto.ProfileDto;
 import net.bluecollargigs.bcgbackend.service.ProfileService;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api")
@@ -45,5 +49,12 @@ public class ProfileController {
         ProfileDto profiledDto = profileService.getProfileDetails(id);
         return ResponseEntity.ok(profiledDto);
     }
+
+    @GetMapping("/profiles")
+    public ResponseEntity<List<ProfileDto>> getAllProfile() {
+        List<ProfileDto> profiles = profileService.getAllProfiles();
+        return ResponseEntity.ok(profiles);
+    }
+    
 
 }

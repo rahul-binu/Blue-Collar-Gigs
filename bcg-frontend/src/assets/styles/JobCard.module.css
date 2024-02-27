@@ -34,3 +34,14 @@
 .cardContainer:hover {
     animation-play-state: paused; /* Pause animation on hover */
 }
+
+#workerCard {
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+#workerCard:hover {
+    transform: scale(1.01);
+    background-color: black; 
+    color: white; 
+}

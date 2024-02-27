@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { getAllWorkersAPI, getAllWorkersProfileAPI } from "../../services/WorkerServices";
+import * as Icon from 'react-bootstrap-icons';
+import styles from "/src/assets/styles/JobCard.module.css";
 
 const WorkerList = () => {
 
@@ -31,7 +33,15 @@ const WorkerList = () => {
 
     function handleViewClick(id) {
         console.log(id);
-        navigate('workerDetail:{id}');
+        navigate(`/workerDetail:${id}`);
+    }
+
+    function ProfilePic(pic) {
+        if (pic) {
+            return (pic);
+        } else {
+            return ("/images/noProWorker.png");
+        }
     }
 
     return (
@@ -90,7 +100,92 @@ const WorkerList = () => {
                     </table>
                 </div>
             </div>
-        </div>
+
+            <div className="row">
+                <div className="container mt-5">
+
+                    < div className="row mb-5" >
+                        {
+                            workerProfileDetails.map(workerP => (
+
+                                <div className="col-6 mb-5">
+                                    <div className="card p-3 " onClick={() => handleViewClick(workerP.userId)} id={styles.workerCard}>
+                                        <div className="row">
+
+                                            <div className="col-2">
+                                                <img src={ProfilePic(workerP.profilePic)}
+                                                    style={{
+                                                        height: '100px',
+                                                        width: '100px',
+                                                        borderRadius: '50%',
+                                                        border: '2.5px solid green'
+                                                    }}
+                                                    alt="" />
+                                            </div>
+
+                                            <div className="col text-start mt-2 mx-4">
+                                                <div className="row">
+                                                    <span style={{ fontSize: '20px', textAlign: 'left' }}>
+                                                        {workerP.profileFirstName}
+                                                        <span style={{ fontSize: '20px', textAlign: 'left', paddingLeft: '10px' }}>
+                                                            {workerP.profileLastName}
+                                                        </span>
+
+                                                        {
+                                                            workerDetails.some(worker => workerP.userId === worker.userId) ?
+                                                                workerDetails
+                                                                    .filter(worker => workerP.userId === worker.userId)
+                                                                    .map(worker => (
+                                                                        worker.skills.length > 0 ?
+                                                                            <span key={worker.workerId}
+                                                                                style={{ fontSize: '14px', textAlign: 'right', paddingLef: '40px' }}
+                                                                            >
+                                                                                {worker.skills && worker.skills.length > 10 ? `${worker.skills.slice(0, 10)}...` : worker.skills}
+                                                                            </span>
+                                                                            : <span key={worker.workerId}
+                                                                                style={{ fontSize: '14px', textAlign: 'left', paddingLeft: '40px' }}>No Skills to show</span>
+                                                                    ))
+                                                                : <span key={workerP.userId}
+                                                                    style={{ fontSize: '14px', textAlign: 'left', paddingLeft: '40px' }}>No Skills to show</span>
+                                                        }
+
+                                                    </span>
+
+
+                                                </div>
+                                                <div className="row">
+                                                    <span>
+                                                        <span style={
+                                                            {
+                                                                marginRight:'15px'
+                                                            }
+                                                        }>
+                                                            <Icon.FileEarmarkPersonFill />
+                                                        </span>
+                                                        {workerP.aboutUser && workerP.aboutUser.length > 100 ? `${workerP.aboutUser.slice(0, 100)}...` : workerP.aboutUser}
+                                                    </span>
+                                                </div>
+                                                <div className="row text-secondary">
+                                                    <span>
+                                                        <span>
+                                                            Check out my profile for more details...!
+                                                        </span>
+
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            ))
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div >
     );
 }
 

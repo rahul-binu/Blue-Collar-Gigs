@@ -1,10 +1,14 @@
 package net.bluecollargigs.bcgbackend.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 
 import net.bluecollargigs.bcgbackend.dto.WorkerDto;
+import net.bluecollargigs.bcgbackend.mapper.JobMapper;
 import net.bluecollargigs.bcgbackend.mapper.WorkerMapper;
 import net.bluecollargigs.bcgbackend.repository.WorkerRepository;
 import net.bluecollargigs.bcgbackend.service.WorkerService;
@@ -46,5 +50,11 @@ public class WorkerServiceImpl implements WorkerService {
         Worker updatedWorkerObj = workerRepository.save(worker);
 
         return WorkerMapper.mapToWorkerDto(updatedWorkerObj);
+    }
+
+    public List<WorkerDto> getAllWorkers() {
+        List<Worker> workers = workerRepository.findAll();
+        return workers.stream().map((worker) -> WorkerMapper.mapToWorkerDto(worker))
+                .collect(Collectors.toList());
     }
 }

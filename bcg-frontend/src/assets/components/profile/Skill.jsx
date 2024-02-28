@@ -189,10 +189,24 @@ const Skill = () => {
                                                             flanguageSelect()
                                                         }
                                                     </option>
-                                                   <option value="englis">English</option>
-                                                    <option value="malayalam">Malayalam</option>
-                                                    <option value="hindhi">Hindi</option>
                                                     <option value="English">English</option>
+                                                    <option value="Malayalam">Malayalam (മലയാളം)</option>
+                                                    <option value="Hindi">Hindi (हिन्दी)</option>
+                                                    <option value="Tamil">Tamil (தமிழ்)</option>
+                                                    <option value="Telugu">Telugu (తెలుగు)</option>
+                                                    <option value="Kannada">Kannada (ಕನ್ನಡ)</option>
+                                                    <option value="Marathi">Marathi (मराठी)</option>
+                                                    <option value="Bengali">Bengali (বাংলা)</option>
+                                                    <option value="Gujarati">Gujarati (ગુજરાતી)</option>
+                                                    <option value="Punjabi">Punjabi (ਪੰਜਾਬੀ)</option>
+                                                    <option value="Odia">Odia (ଓଡ଼ିଆ)</option>
+                                                    <option value="Assamese">Assamese (অসমীয়া)</option>
+                                                    <option value="Urdu">Urdu (اردو)</option>
+                                                    <option value="Sanskrit">Sanskrit (संस्कृतम्)</option>
+                                                    <option value="Konkani">Konkani (कोंकणी)</option>
+                                                    <option value="Manipuri">Manipuri (মৈতৈলোন্)</option>
+                                                    <option value="Sindhi">Sindhi (سنڌي)</option>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -209,10 +223,24 @@ const Skill = () => {
                                                         }
                                                     </option>
 
-                                                    <option value="englis">English</option>
-                                                    <option value="malayalam">Malayalam</option>
-                                                    <option value="hindhi">Hindi</option>
                                                     <option value="English">English</option>
+                                                    <option value="Malayalam">Malayalam (മലയാളം)</option>
+                                                    <option value="Hindi">Hindi (हिन्दी)</option>
+                                                    <option value="Tamil">Tamil (தமிழ்)</option>
+                                                    <option value="Telugu">Telugu (తెలుగు)</option>
+                                                    <option value="Kannada">Kannada (ಕನ್ನಡ)</option>
+                                                    <option value="Marathi">Marathi (मराठी)</option>
+                                                    <option value="Bengali">Bengali (বাংলা)</option>
+                                                    <option value="Gujarati">Gujarati (ગુજરાતી)</option>
+                                                    <option value="Punjabi">Punjabi (ਪੰਜਾਬੀ)</option>
+                                                    <option value="Odia">Odia (ଓଡ଼ିଆ)</option>
+                                                    <option value="Assamese">Assamese (অসমীয়া)</option>
+                                                    <option value="Urdu">Urdu (اردو)</option>
+                                                    <option value="Sanskrit">Sanskrit (संस्कृतम्)</option>
+                                                    <option value="Konkani">Konkani (कोंकणी)</option>
+                                                    <option value="Manipuri">Manipuri (মৈতৈলোন্)</option>
+                                                    <option value="Sindhi">Sindhi (سنڌي)</option>
+
                                                 </select>
                                             </div>
                                         </div>

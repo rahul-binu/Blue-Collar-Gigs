@@ -141,7 +141,7 @@ const WorkersDetails = () => {
                                         style={{
                                             paddingLeft: '10px'
                                         }}>
-                                        {workerProfileDetails.district}
+                                       , {workerProfileDetails.district}
                                     </span>
                                     <span
                                         style={{

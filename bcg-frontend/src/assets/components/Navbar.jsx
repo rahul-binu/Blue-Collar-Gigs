@@ -122,7 +122,7 @@ function Navbar() {
                 );
             }
         } else {
-            return "No Ut";
+            return "";
         }
     }
 

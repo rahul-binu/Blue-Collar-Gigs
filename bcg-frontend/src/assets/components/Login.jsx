@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import AuthService from "../services/AuthService";
@@ -44,8 +44,23 @@ function Login() {
 
     return (
         <>
-            <div className="container py-5 h-100">
-                <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="container py-5 h-100 mt-4"
+                style={{
+                    backgroundImage: `url('/images/hammerHit.gif')`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: '100%',
+                    backgroundPosition: 'center bottom',
+                    transform: 'scaleX(-1)',
+                    width: '100%',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}>
+
+                <div className="row d-flex justify-content-end align-items-center h-100"
+                    style={{
+                        transform: 'scaleX(-1)',
+                        paddingRight:'50px'
+                    }}>
                     <div className="col-12 col-md-10 col-lg-4 col-sm-10">
                         {/* <h3 className="text-center mb-3 text-primary">Blue Collar Gigs</h3> */}
                         <div className="card shadow-2-strong">
@@ -85,7 +100,7 @@ function Login() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     );
 }

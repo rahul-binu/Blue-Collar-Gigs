@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 
-import {createUser} from '../services/UserService';
+import { createUser } from '../services/UserService';
 
 function Register() {
 
@@ -23,16 +23,16 @@ function Register() {
     useEffect(() => {
         //timedate
         const intervalId = setInterval(() => {
-          setRegistrationDate(new Date());
+            setRegistrationDate(new Date());
         }, 1000);
-    
-        return () => clearInterval(intervalId);
-      }, []);
-      const formattedDateTime = format(registrationDate, 'yyyy-MM-dd\'T\'HH:mm:ss.SSS');// Customize the format as needed
 
-       function goToLogin(){
-         navigate('/login');
-       }
+        return () => clearInterval(intervalId);
+    }, []);
+    const formattedDateTime = format(registrationDate, 'yyyy-MM-dd\'T\'HH:mm:ss.SSS');// Customize the format as needed
+
+    function goToLogin() {
+        navigate('/login');
+    }
 
     function handleEmail(e) {
         setEmail(e.target.value);
@@ -83,12 +83,12 @@ function Register() {
     function registerUser(e) {
         e.preventDefault();
 
-        const user = { email, userType, password, registrationDate :formattedDateTime};
+        const user = { email, userType, password, registrationDate: formattedDateTime };
         //  console.log(user);
 
         if (formValidation()) {
-            
-            createUser(user).then((response) =>{
+
+            createUser(user).then((response) => {
                 // console.log(response.data);
                 navigate('/login');
             }).catch(error => {
@@ -101,8 +101,24 @@ function Register() {
         <>
 
             <section className="">
-                <div className="container py-5 h-100">
-                    <div className="row d-flex justify-content-center align-items-center h-100">
+                <div className="container py-5 h-100 mt-4"
+                    style={{
+                        backgroundImage: `url('/images/hammerHit.gif')`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: '100%',
+                        backgroundPosition: 'center bottom',
+                        transform: 'scaleX(-1)',
+                        width: '100%',
+                        height: '2000px',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}>
+
+                    <div className="row d-flex justify-content-end align-items-center h-100"
+                        style={{
+                            transform: 'scaleX(-1)',
+                            paddingRight: '50px'
+                        }}>
                         <div className="col-12 col-md-10 col-lg-4 col-sm-10">
                             {/* <h3 className="text-center mb-3 text-primary">Blue Collar Gigs</h3> */}
                             <div className="card shadow-2-strong">

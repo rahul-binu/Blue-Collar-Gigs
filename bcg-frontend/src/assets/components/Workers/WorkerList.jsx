@@ -32,8 +32,8 @@ const WorkerList = () => {
     }
 
     function handleViewClick(id) {
-        console.log(id);
-        navigate(`/workerDetail:${id}`);
+        //console.log(id);
+        navigate(`/workerdetails/${id}`);
     }
 
     function ProfilePic(pic) {
@@ -75,7 +75,8 @@ const WorkerList = () => {
                                                         .filter(worker => workerP.userId === worker.userId)
                                                         .map(worker => (
                                                             worker.skills.length > 0 ?
-                                                                <span key={worker.workerId}>{worker.skills}</span>
+                                                                <span className="px-3"
+                                                                    key={worker.workerId}>{worker.skills}</span>
                                                                 : <span key={worker.workerId}>No Skills to show</span>
                                                         ))
                                                     : <span key={workerP.userId}>No Skills to show</span>
@@ -138,15 +139,15 @@ const WorkerList = () => {
                                                                     .map(worker => (
                                                                         worker.skills.length > 0 ?
                                                                             <span key={worker.workerId}
-                                                                                style={{ fontSize: '14px', textAlign: 'right', paddingLef: '40px' }}
+                                                                                style={{ fontSize: '14px', textAlign: 'right', paddingLef: '50px' }}
                                                                             >
                                                                                 {worker.skills && worker.skills.length > 10 ? `${worker.skills.slice(0, 10)}...` : worker.skills}
                                                                             </span>
                                                                             : <span key={worker.workerId}
-                                                                                style={{ fontSize: '14px', textAlign: 'left', paddingLeft: '40px' }}>No Skills to show</span>
+                                                                                style={{ fontSize: '14px', textAlign: 'left', paddingLeft: '50px' }}>No Skills to show</span>
                                                                     ))
                                                                 : <span key={workerP.userId}
-                                                                    style={{ fontSize: '14px', textAlign: 'left', paddingLeft: '40px' }}>No Skills to show</span>
+                                                                    style={{ fontSize: '14px', textAlign: 'left', paddingLeft: '50px' }}>No Skills to show</span>
                                                         }
 
                                                     </span>
@@ -157,7 +158,7 @@ const WorkerList = () => {
                                                     <span>
                                                         <span style={
                                                             {
-                                                                marginRight:'15px'
+                                                                marginRight: '15px'
                                                             }
                                                         }>
                                                             <Icon.FileEarmarkPersonFill />

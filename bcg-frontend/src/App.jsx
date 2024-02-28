@@ -17,6 +17,7 @@ import Service from './assets/components/Services';
 import EditWork from './assets/components/Work/EditWork';
 import WorkDetails from './assets/components/Work/WorkDetails';
 import WorkerList from './assets/components/Workers/WorkerList';
+import WorkersDetails from './assets/components/Workers/WorkersDetails';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -39,6 +40,7 @@ function App() {
           <Route path='/editwork' element={<EditWork />}></Route>  
           <Route path='/workdetails/:id' element={<WorkDetails />} /> 
           <Route path= 'workerlist' element={<WorkerList />}></Route>
+          <Route path='/workerdetails/:id' element={<WorkersDetails />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

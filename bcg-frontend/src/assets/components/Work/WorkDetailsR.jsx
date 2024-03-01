@@ -133,12 +133,6 @@ function WorkDetailsR() {
 
     return (
         <div className="container-fluid">
-            {workerProfileDetails.map(workerProfile => (
-                <h3 key={workerProfile.id}>
-                    {workerProfile.profileFirstName}
-                </h3>
-            ))}
-
 
             <div className="row mb-4">
                 {/* <div className="col" style={{ height: '200px' }}> {/* Adjust the height as needed */}
@@ -534,14 +528,14 @@ function WorkDetailsR() {
 
 
                                                                         <span>
-                                                                        {workerDetails.map(worker => (
-    worker.userId === workerProfileDetails.userId ? (
-        <React.Fragment key={worker.userId}> 
-            <span>{worker.flanguage}</span>
-            <span style={{ paddingLeft: '10px' }}>{worker.slanguage}</span>
-        </React.Fragment>
-    ) : null
-))}
+                                                                            {workerDetails.map(worker => (
+                                                                                worker.userId === workerProfileDetails.userId ? (
+                                                                                    <React.Fragment key={worker.userId}>
+                                                                                        <span>{worker.flanguage}</span>
+                                                                                        <span style={{ paddingLeft: '10px' }}>{worker.slanguage}</span>
+                                                                                    </React.Fragment>
+                                                                                ) : null
+                                                                            ))}
                                                                         </span>
 
 
@@ -637,6 +631,11 @@ function WorkDetailsR() {
                                                                 </span>
                                                             </div>
                                                         </div>
+
+
+                                                    </div>
+                                                    <div className="col-6 d-flex justify-content-end mt-4" style={{ height: '250px' }}>
+
                                                         <div className="row mb-4">
                                                             <div className="col">
                                                                 <hr />
@@ -648,14 +647,12 @@ function WorkDetailsR() {
                                                                 </span>
                                                             </div>
                                                         </div>
-
-                                                    </div>
-                                                    <div className="col-6 d-flex justify-content-end" style={{ height: '250px' }}>
                                                         <img src={ProfilePic(workerProfileDetails.profilePic)}
                                                             style={{
+                                                                marginTop:'3em',
                                                                 marginRight: '50px',
-                                                                height: '350px', // Set height to 100% to fill the container height
-                                                                width: '350px',
+                                                                height: '250px', // Set height to 100% to fill the container height
+                                                                width: '250px',
                                                                 borderRadius: '50%',
                                                                 border: '2.5px solid green'
                                                             }}

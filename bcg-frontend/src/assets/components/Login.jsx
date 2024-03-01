@@ -1,5 +1,6 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import ErrorPop from './ESMessage/ErrorPop';
 
 import AuthService from "../services/AuthService";
 import { getUserDetails } from "../services/profile";
@@ -8,26 +9,20 @@ import { waitAndReturnNull } from '../config/wait';
 function Login() {
 
     const navigate = useNavigate();
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState(""); // State to store error message
 
-    const [errors, setErrors] = useState({
-        email: '',
-        password: ''
-    })
+    const goToHome = () => {
+        navigate('/Home');
+        window.location.reload(); // Refresh the page
+    }
 
     function goRegister() {
         navigate('/Register');
     }
 
-    function goToHome() {
-        navigate('/Home');
-        window.location.reload(); // Refresh the page
-    }
-
-
-    const LoginUser = async (e) => { // Mark function as async
+    const LoginUser = async (e) => { 
         e.preventDefault();
         const user = { email, password };
 
@@ -36,14 +31,14 @@ function Login() {
             console.log("User logged in successfully");
             goToHome();
         } catch (error) {
-            console.error("Login failed:", error.message, user);
-            // Display error message to the user
+            setErrorMessage("Wrong Credentials, Try again" ); // Set error message
         }
     }
 
 
     return (
         <>
+             <ErrorPop errorMessage={errorMessage} />
             <div className="container py-5 h-100 mt-4"
                 style={{
                     backgroundImage: `url('/images/hammerHit.gif')`,
@@ -59,7 +54,7 @@ function Login() {
                 <div className="row d-flex justify-content-end align-items-center h-100"
                     style={{
                         transform: 'scaleX(-1)',
-                        paddingRight:'50px'
+                        paddingRight: '50px'
                     }}>
                     <div className="col-12 col-md-10 col-lg-4 col-sm-10">
                         {/* <h3 className="text-center mb-3 text-primary">Blue Collar Gigs</h3> */}

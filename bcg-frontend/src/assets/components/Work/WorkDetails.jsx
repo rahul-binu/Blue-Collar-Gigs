@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { getJBIdAPI } from "../../services/WorkService";
+import { createApplicationReq, applicationCheckByJUId } from "../../services/ApplicationService";
 
 import * as Icon from 'react-bootstrap-icons';
 import WorkIMG from "./WorkIMG";
+import { UserId } from "../utils/UserLocalStoreVal";
 
 function WorkDetails() {
 
     let { id } = useParams();
+
+    const applicantId = UserId();
+    const [applyBtnStatus, setApplyBtnStatus] = useState(0);
 
     const [jobTitle, setJobTitle] = useState('');
     const [district, setDistrict] = useState('');
@@ -28,7 +33,8 @@ function WorkDetails() {
 
 
     useEffect(() => {
-        getWorkById(id)
+        getWorkById(id);
+        eligbleCheck()
     }, [])
 
     function getWorkById(id) {
@@ -54,6 +60,59 @@ function WorkDetails() {
             console.log(error);
         })
     }
+
+    function eligbleCheck() {
+        applicationCheckByJUId(id, applicantId)
+            .then(response => {
+                console.log(response);
+                setApplyBtnStatus(1);
+            })
+            .catch(error => {
+                console.log(error);
+                setApplyBtnStatus(0);
+            });
+    }
+
+
+    function jobRequest() {
+
+        const jobId = id;
+
+        const applicationReq = {
+            jobId,
+            applicantId
+        };
+        createApplicationReq(applicationReq)
+            .then(response => {
+                console.log("Success:", response);
+                // window.refre
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error("Error:", error.message);
+            });
+    }
+
+    function applyBtn() {
+        if (applyBtnStatus === 0) {
+            return (
+                <button type="button" className="btn btn-success"
+                    title="Make a request if you are interested" onClick={jobRequest}
+                >
+                    Request consideration for employment
+                </button>
+            );
+        } else {
+            return (
+                <button type="button" className="btn btn-warning"
+                    title="Make a request if you are interested"
+                >
+                <span className="px-3"><Icon.ExclamationOctagon/></span>    You have already requested for this work
+                </button>
+            );
+        }
+    }
+
 
     return (
         <div className="container-fluid">
@@ -193,6 +252,19 @@ function WorkDetails() {
                                         <span style={{ marginRight: '10px', fontSize: '1.25rem' }}>{state}</span><br />
                                         <span style={{ fontSize: '1.25rem' }}>{pincode}</span>
                                     </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row mt-3">
+                            <div className="col ">
+                                <div className="row">
+                                    <div className="col text-center">
+                                        {applyBtn()}
+                                    </div>
+                                </div>
+                                <br />
+                                <div className="row">
+                                    <p>After your profile has been validated by the job provider, they will initiate contact with you.</p>
                                 </div>
                             </div>
                         </div>

@@ -46,7 +46,7 @@ const WorkerList = () => {
 
     return (
         <div className="container text-dark">
-            <div className="row">
+            {/* <div className="row">
                 <div className="container mt-5">
                     <h2 className="mb-4">Workers List</h2>
                     <table className="table table-striped">
@@ -100,12 +100,12 @@ const WorkerList = () => {
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> */}
 
             <div className="row">
                 <div className="container mt-5">
 
-                    < div className="row mb-5" >
+                    < div className="row " >
                         {
                             workerProfileDetails.map(workerP => (
 
@@ -128,7 +128,7 @@ const WorkerList = () => {
                                                 <div className="row">
                                                     <span style={{ fontSize: '20px', textAlign: 'left' }}>
                                                         {workerP.profileFirstName}
-                                                        <span style={{ fontSize: '20px', textAlign: 'left', paddingLeft: '10px' }}>
+                                                        <span style={{ fontSize: '20px', textAlign: 'left', paddingLeft: '10px',paddingRight:'10px' }}>
                                                             {workerP.profileLastName}
                                                         </span>
 

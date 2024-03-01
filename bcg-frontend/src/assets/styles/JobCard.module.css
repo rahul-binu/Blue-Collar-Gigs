@@ -38,6 +38,7 @@
 #workerCard {
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
+    background: linear-gradient(to top, rgb(207, 207, 245), rgba(255, 255, 255, 0));
 }
 
 #workerCard:hover {
@@ -49,6 +50,7 @@
 #workerdatacard {
     /* box-shadow: 0px 0px .5px .5px blue; */
     box-shadow: 0 0 5px 1px rgba(0, 0, 255, 0.5);
+   
   }
 
   #workerdatacard:hover {

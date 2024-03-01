@@ -53,7 +53,7 @@ const MyPosts = () => {
     }
 
     function goToJobDetails(id) {
-        navigate(`/workdetails/${id}`);
+        navigate(`/rworkerdetails/${id}`);
     }
 
     return (

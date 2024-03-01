@@ -1,9 +1,9 @@
-import React from "react";
+import { BsCheckCircle, BsExclamationCircle } from 'react-icons/bs';
 
 import { useState, useEffect } from "react";
 import * as Icon from 'react-bootstrap-icons';
 
-import Profile from "../Profile";
+import ErrorPop from '../ESMessage/ErrorPop';
 import ProfileSide from "./profileSide";
 import { getProfileData } from "../../services/profile";
 import { getWorkerData, createWorker, updateWorker } from "../../services/WorkerServices";
@@ -19,6 +19,30 @@ const Skill = () => {
     const [workerId, setWorkerId] = useState('');
     const [slanguage, setSlanguage] = useState('');
     const [flanguage, setFlanguage] = useState('');
+    const [expertIn, setExpertIn] = useState('');
+
+    const options = [
+        'Assembly',
+        'Moving',
+        'Cleaning',
+        'Plumbing',
+        'Electrical',
+        'Landscaping',
+        'Painting',
+        'Carpentry',
+        'Roofing',
+        'Flooring',
+        'Masonry',
+        'Welding',
+        'Automotive',
+        'Pest Control',
+        'Drywall',
+        'Locksmith',
+        'Appliances',
+        'Janitorial',
+        'Demolition'
+    ];
+
 
     useEffect(() => {
         if (userId) {
@@ -65,6 +89,9 @@ const Skill = () => {
             navigate('/');
         }).catch(error => {
             console.log(error);
+            // window.alert("An error occurred: " + error.message);
+            // showErrorPopup('An error occurred: ' + error.message);
+            ErrorPop(error.message);
         })
     }
 
@@ -123,8 +150,49 @@ const Skill = () => {
         }
     }
 
+    //const [skills, setSkills] = useState('');
+    const [isValid, setIsValid] = useState(true); // State to track input validity
+
+    const handleSkillChange = (e) => {
+        setSkill(e.target.value);
+        setIsValid(true); // Reset validation on input change
+    };
+
+    // Function to validate skills (for example, checking for non-empty input)
+    const validateSkills = () => {
+        const isValidSkills = skills.trim() !== '';
+        setIsValid(isValidSkills);
+    };
+
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const showErrorPopup = (message) => {
+        setErrorMessage(message);
+        document.getElementById('errorPopup').style.display = 'block';
+    };
+
+    const closePopup = () => {
+        setErrorMessage('');
+        document.getElementById('errorPopup').style.display = 'none';
+    };
+
+
     return (
         <>
+            <div id="errorPopup" className="error-popup p-4" style={{
+                display: errorMessage ? 'block' : 'none', backgroundColor: '#f8d7da', border: '2px solid #f5c6cb',
+                borderRadius: '5px', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+                padding: '20px', zIndex: '9999'
+            }}>
+                <p id="errorMessage" style={{ margin: '0', marginBottom: '10px' }}>{errorMessage}</p>
+                <div className="row text-align-end">
+                    <button style={{
+                        fontSize: '16px', padding: '5px 10px', background: '#dc3545', color: '#fff',
+                        border: 'none', borderRadius: '3px', cursor: 'pointer'
+                    }} onClick={closePopup}>OK</button>
+                </div>
+            </div>
+
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-12 col-md-10 col-lg-9 col-sm-10">
@@ -156,8 +224,8 @@ const Skill = () => {
 
                                             </div>
                                             <div className="text-center text-sm-right">
-                                                <span className="">worker</span>
-                                                <div className="text-muted"><small>Joined 09 Dec 2017</small></div>
+                                                <span className=""> Welcome worker</span>
+
                                             </div>
                                         </div>
                                     </div>
@@ -168,12 +236,37 @@ const Skill = () => {
                                     <div className="row">
                                         <div className="col mb-2 text-start">
                                             <div className="form-group">
-                                                <label className="mb-1 mx-3">Skill</label>
-                                                <textarea className="form-control" rows="2"
-                                                    value={skills}
-                                                    onChange={(e) => setSkill(e.target.value)}
-                                                    placeholder="Electrical, Painting, ect..."></textarea>
+                                                <label className="mb-1 mx-3">Skills</label>
+                                                <div className="input-group">
+                                                    <input
+                                                        type="text"
+                                                        className={`form-control ${isValid ? '' : 'is-invalid'}`} // Apply 'is-invalid' class if validation fails
+                                                        value={skills}
+                                                        onChange={handleSkillChange}
+                                                        onBlur={validateSkills} // Validate skills on blur
+                                                        placeholder="Enter skills separated by commas (e.g., Electrical, Painting, etc...)"
+                                                    />
+
+                                                    {isValid ? (
+                                                        <div className="input-group-append">
+                                                            <span className="input-group-text">
+                                                                <BsCheckCircle color="green" />
+                                                            </span>
+                                                        </div>
+                                                    ) : (
+                                                        <div className="input-group-append">
+                                                            <span className="input-group-text">
+                                                                <BsExclamationCircle color="red" />
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                </div>
+
+                                                {!isValid && (
+                                                    <div className="invalid-feedback">Please enter at least one skill.</div>
+                                                )}
                                             </div>
+
                                         </div>
                                     </div>
                                     <hr />
@@ -213,7 +306,7 @@ const Skill = () => {
 
                                         <div className="col">
                                             <div className="form-group">
-                                                <label className="mb-1 mx-3">Second tongue</label>
+                                                <label className="mb-1 mx-3">I can also speek</label>
                                                 <select className="form-control"
                                                     onChange={(e) => setSlanguage(e.target.value)}
                                                 >
@@ -245,6 +338,39 @@ const Skill = () => {
                                             </div>
                                         </div>
 
+
+                                    </div>
+
+                                    <div className="row mt-4 mb-4">
+                                        <div className="col">
+                                            <div className="form-group text-start">
+                                                <label className="mb-1 mx-3 ">Iam an expert in</label>
+                                                <select className="form-control"
+                                                    onChange={(e) => setExpertIn(e.target.value)}
+                                                >
+                                                    <option value="">Select an option...</option>
+                                                    <option value="Assembly">Assembly</option>
+                                                    <option value="Moving">Moving</option>
+                                                    <option value="Cleaning">Cleaning</option>
+                                                    <option value="Plumbing">Plumbing</option>
+                                                    <option value="Electrical">Electrical</option>
+                                                    <option value="Landscaping">Landscaping</option>
+                                                    <option value="Painting">Painting</option>
+                                                    <option value="Carpentry">Carpentry</option>
+                                                    <option value="Roofing">Roofing</option>
+                                                    <option value="Flooring">Flooring</option>
+                                                    <option value="Masonry">Masonry</option>
+                                                    <option value="Welding">Welding</option>
+                                                    <option value="Automotive">Automotive</option>
+                                                    <option value="Pest Control">Pest Control</option>
+                                                    <option value="Drywall">Drywall</option>
+                                                    <option value="Locksmith">Locksmith</option>
+                                                    <option value="Appliances">Appliances</option>
+                                                    <option value="Janitorial">Janitorial</option>
+                                                    <option value="Demolition">Demolition</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
                                     </div>
 

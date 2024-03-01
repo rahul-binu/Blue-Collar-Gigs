@@ -4,16 +4,21 @@ import '../styles/Profile.css';
 import { createProfile, getProfileData, updateProfileAPI } from "../services/profile";
 import { uploadToCloudinary } from './utils/uploadToCloudinary';
 import ProfileSide from "./profile/profileSide";
+import ErrorPop from './ESMessage/ErrorPop';
+import SuccessPop from'./ESMessage/SuccessPop';
 
 function Profile() {
 
     const userId = localStorage.getItem("userId");
     const userType = localStorage.getItem('ut');
 
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
+
     const [profileFirstName, setProfileFirstName] = useState('');
     const [profileLastName, setProfileLastName] = useState('');
     const [userEmail, setUserEmail] = useState('');
-    const [userPhone, setUserPhone] = useState('');
+    const [userPhone, setUserPhone] = useState();
     const [address, setAddress] = useState('');
     const [district, setDistrict] = useState('');
     const [state, setState] = useState('');
@@ -65,9 +70,11 @@ function Profile() {
 
         createProfile(profile).then((response) => {
             console.log(response.data);
-            navigate('/');
+          //  navigate('/');
+          setSuccessMessage("Profile created successfully")
         }).catch(error => {
             console.log(error);
+            setErrorMessage("Wrong Credentials, Try again" );
         })
     }
 
@@ -83,9 +90,11 @@ function Profile() {
 
         updateProfileAPI(newprofile, userId).then((response) => {
             console.log(response.data);
-            navigate('/');
+            setSuccessMessage("Profile updated successfully")
+           // navigate('/');
         }).catch(error => {
             console.log(error);
+            setErrorMessage("Oops! Something unexpected occurred while processing your request" );
         })
     }
 
@@ -115,6 +124,10 @@ function Profile() {
 
     return (
         <>
+        <ErrorPop errorMessage={errorMessage} />
+        
+        <SuccessPop successMessage={successMessage} />
+
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-12 col-md-10 col-lg-9 col-sm-10">

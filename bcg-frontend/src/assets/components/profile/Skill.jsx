@@ -2,15 +2,20 @@ import { BsCheckCircle, BsExclamationCircle } from 'react-icons/bs';
 
 import { useState, useEffect } from "react";
 import * as Icon from 'react-bootstrap-icons';
-
+import SuccessPop from'../ESMessage/SuccessPop';
 import ErrorPop from '../ESMessage/ErrorPop';
 import ProfileSide from "./profileSide";
 import { getProfileData } from "../../services/profile";
 import { getWorkerData, createWorker, updateWorker } from "../../services/WorkerServices";
 
+
 const Skill = () => {
 
     const userId = localStorage.getItem("userId");
+
+    
+    const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
     const [profileFirstName, setProfileFirstName] = useState('');
     const [profileLastName, setProfileLastName] = useState('');
@@ -86,12 +91,12 @@ const Skill = () => {
 
         updateWorker(newWorkerData, userId).then((response) => {
             console.log(response.data);
-            navigate('/');
+            setSuccessMessage("Profile data updated successfully")
         }).catch(error => {
             console.log(error);
             // window.alert("An error occurred: " + error.message);
             // showErrorPopup('An error occurred: ' + error.message);
-            ErrorPop(error.message);
+            setErrorMessage("Oops! Something unexpected occurred while processing your request" );
         })
     }
 
@@ -108,9 +113,10 @@ const Skill = () => {
 
         createWorker(worker).then((response) => {
             console.log(response.data);
-            navigate('/');
+            setSuccessMessage("Profile data updated successfully")
         }).catch(error => {
             console.log(error);
+            setErrorMessage("Oops! Something unexpected occurred while processing your request" );
         })
     }
 
@@ -164,34 +170,14 @@ const Skill = () => {
         setIsValid(isValidSkills);
     };
 
-    const [errorMessage, setErrorMessage] = useState('');
-
-    const showErrorPopup = (message) => {
-        setErrorMessage(message);
-        document.getElementById('errorPopup').style.display = 'block';
-    };
-
-    const closePopup = () => {
-        setErrorMessage('');
-        document.getElementById('errorPopup').style.display = 'none';
-    };
 
 
     return (
         <>
-            <div id="errorPopup" className="error-popup p-4" style={{
-                display: errorMessage ? 'block' : 'none', backgroundColor: '#f8d7da', border: '2px solid #f5c6cb',
-                borderRadius: '5px', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-                padding: '20px', zIndex: '9999'
-            }}>
-                <p id="errorMessage" style={{ margin: '0', marginBottom: '10px' }}>{errorMessage}</p>
-                <div className="row text-align-end">
-                    <button style={{
-                        fontSize: '16px', padding: '5px 10px', background: '#dc3545', color: '#fff',
-                        border: 'none', borderRadius: '3px', cursor: 'pointer'
-                    }} onClick={closePopup}>OK</button>
-                </div>
-            </div>
+
+<ErrorPop errorMessage={errorMessage} />
+        
+        <SuccessPop successMessage={successMessage} />
 
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">

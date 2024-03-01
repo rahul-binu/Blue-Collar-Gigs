@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 
 import { createUser } from '../services/UserService';
+import SuccessPop from './ESMessage/SuccessPop';
 
 function Register() {
 
@@ -11,6 +12,8 @@ function Register() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [registrationDate, setRegistrationDate] = useState(new Date());
+
+    const [successMessage, setSuccessMessage] = useState("");
 
     const navigate = useNavigate();
 
@@ -90,6 +93,7 @@ function Register() {
 
             createUser(user).then((response) => {
                 // console.log(response.data);
+                setSuccessMessage("Done")
                 navigate('/login');
             }).catch(error => {
                 console.log(error);
@@ -99,6 +103,7 @@ function Register() {
 
     return (
         <>
+            <SuccessPop successMessage={successMessage} />
 
             <section className="">
                 <div className="container py-5 h-100 mt-4"
@@ -131,9 +136,9 @@ function Register() {
                                         </div>
 
                                         <div className="form-outline mb-4">
-                                            <input type='email' autoComplete="new-password"
+                                            <input type='email' autoComplete="new-password" required
                                                 className={`form-control form-control-md ${errors.email ? 'is-invalid' : ''}`}
-                                                onChange={handleEmail} placeholder="Email adress" />
+                                                onChange={handleEmail} placeholder="Email address" />
                                             {errors.email && <div className='invalid-feedback'>{errors.email}</div>}
                                         </div>
                                         <div className="form-outline mb-4">

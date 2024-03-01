@@ -5,6 +5,7 @@ import ErrorPop from './ESMessage/ErrorPop';
 import AuthService from "../services/AuthService";
 import { getUserDetails } from "../services/profile";
 import { waitAndReturnNull } from '../config/wait';
+import SuccessPop from "./ESMessage/SuccessPop";
 
 function Login() {
 
@@ -12,6 +13,7 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState(""); // State to store error message
+    const [successMessage, setSuccessMessage] = useState("");
 
     const goToHome = () => {
         navigate('/Home');
@@ -39,6 +41,7 @@ function Login() {
     return (
         <>
              <ErrorPop errorMessage={errorMessage} />
+             {/* <SuccessPop successMessage={successMessage} /> */}
             <div className="container py-5 h-100 mt-4"
                 style={{
                     backgroundImage: `url('/images/hammerHit.gif')`,

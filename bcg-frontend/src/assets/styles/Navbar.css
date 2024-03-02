@@ -1,42 +1,56 @@
+/* Enhance the font for a futuristic feel */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Adjustments to .blueCollarGigsTitle */
 .blueCollarGigsTitle {
-    color: black;
-    padding-left: 10%;
+    color: black; 
+    font-size: 29px;
+    font-weight:bold;
 }
 
+/* Adjustments to .navbar */
 .navbar {
-    box-shadow: 1px 0px 1px black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
 }
 
+/* Adjustments to #loginRegister */
 #loginRegister {
     cursor: pointer;
-    color: black;
+    color: #ff00ff; /* Magenta color */
 }
 
+/* Adjustments to #profileIcon */
 #profileIcon {
-    font-size: 25px;
-    color: #a92b2b;
+    font-size: 30px; /* Slightly larger size */
+    color: #ff9900; /* Orange color */
     cursor: pointer;
 }
 
+/* Adjustments to .navbar-goTo-statements */
 .navbar-goTo-statements {
-    position: relative; /* Ensure relative positioning for the ::before pseudo-element */
+    position: relative;
     cursor: pointer;
 }
 
+/* Adjustments to .navbar-goTo-statements::before */
 .navbar-goTo-statements::before {
-    content: ''; 
-    position: absolute; 
-    bottom: -2px; 
-    left: 0; 
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
     width: 0;
-    height: 2px; 
-    background-color: black; 
+    height: 2px;
+    background-color: #00ff00; /* Green color */
     transition: width 0.3s ease-in-out;
 }
 
+/* Adjustments to .navbar-goTo-statements:hover::before */
 .navbar-goTo-statements:hover::before {
-    width: 100%; /* Expand the width to 100% on hover */
+    width: 100%;
 }
+
 
 
 /* Navy Blue (#001F3F)

@@ -14,7 +14,7 @@ public class ProfileDto {
     private Long userId;
     private String profileFirstName;
     private String profileLastName;
-    private Integer userPhone;
+    private Long userPhone;
     private String userEmail;
     private String aboutUser;
     private String address;

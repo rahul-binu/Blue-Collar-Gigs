@@ -34,15 +34,15 @@ public class Profile {
     private String profileLastName;
 
     @Column(name = "user_phone")
-    private Integer userPhone;
+    private Long userPhone;
 
     @Column(name = "user_email")
     private String userEmail;
 
-    @Column(name = "about_user")
+    @Column(name = "about_user", columnDefinition = "TEXT")
     private String aboutUser;
 
-    @Column(name = "address")
+    @Column(name = "address", columnDefinition = "TEXT")
     private String address;
 
     @Column(name = "district")

@@ -2,7 +2,7 @@ import { BsCheckCircle, BsExclamationCircle } from 'react-icons/bs';
 
 import { useState, useEffect } from "react";
 import * as Icon from 'react-bootstrap-icons';
-import SuccessPop from'../ESMessage/SuccessPop';
+import SuccessPop from '../ESMessage/SuccessPop';
 import ErrorPop from '../ESMessage/ErrorPop';
 import ProfileSide from "./profileSide";
 import { getProfileData } from "../../services/profile";
@@ -13,7 +13,7 @@ const Skill = () => {
 
     const userId = localStorage.getItem("userId");
 
-    
+
     const [errorMessage, setErrorMessage] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
 
@@ -96,7 +96,7 @@ const Skill = () => {
             console.log(error);
             // window.alert("An error occurred: " + error.message);
             // showErrorPopup('An error occurred: ' + error.message);
-            setErrorMessage("Oops! Something unexpected occurred while processing your request" );
+            setErrorMessage("Oops! Something unexpected occurred while processing your request");
         })
     }
 
@@ -116,7 +116,7 @@ const Skill = () => {
             setSuccessMessage("Profile data updated successfully")
         }).catch(error => {
             console.log(error);
-            setErrorMessage("Oops! Something unexpected occurred while processing your request" );
+            setErrorMessage("Oops! Something unexpected occurred while processing your request");
         })
     }
 
@@ -175,9 +175,9 @@ const Skill = () => {
     return (
         <>
 
-<ErrorPop errorMessage={errorMessage} />
-        
-        <SuccessPop successMessage={successMessage} />
+            <ErrorPop errorMessage={errorMessage} />
+
+            <SuccessPop successMessage={successMessage} />
 
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">

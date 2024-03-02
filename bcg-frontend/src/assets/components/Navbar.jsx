@@ -60,7 +60,7 @@ function Navbar() {
         window.location.reload();
     }
 
-    function goToMyWorks(){
+    function goToMyWorks() {
         navigate('myposts');
     }
 
@@ -107,17 +107,17 @@ function Navbar() {
                     //     </Dropdown.Menu>
                     // </Dropdown>
                     <>
-                    <span className="navbar-goTo-statements mx-4" onClick={gotToServices}><strong>Services</strong></span>
-                    <span className="navbar-goTo-statements mx-4"onClick={viewWorks}><strong>New Work Posts</strong></span>
+                        <span className="navbar-goTo-statements mx-4" onClick={gotToServices}><strong>Services</strong></span>
+                        <span className="navbar-goTo-statements mx-4" onClick={viewWorks}><strong>New Work Posts</strong></span>
                     </>
                 );
             } else {
                 return (
                     <>
-                     <span className="navbar-goTo-statements mx-4" onClick={gotToServices}><strong>Services</strong></span>
-                    <span className="navbar-goTo-statements mx-4"onClick={goToCreateWork}><strong>Add New Work</strong></span>
-                    <span className="navbar-goTo-statements mx-4"onClick={goToMyWorks}><strong>My Posts</strong></span>
-                    <span className="navbar-goTo-statements mx-4"onClick={goToWorkers}><strong>Workers</strong></span>
+                        <span className="navbar-goTo-statements mx-4" onClick={gotToServices}><strong>Services</strong></span>
+                        <span className="navbar-goTo-statements mx-4" onClick={goToCreateWork}><strong>Add New Work</strong></span>
+                        <span className="navbar-goTo-statements mx-4" onClick={goToMyWorks}><strong>My Posts</strong></span>
+                        <span className="navbar-goTo-statements mx-4" onClick={goToWorkers}><strong>Workers</strong></span>
                     </>
                 );
             }
@@ -129,25 +129,28 @@ function Navbar() {
     const viewWorks = () => {
         const targetDiv = document.getElementById('works');
         if (targetDiv) {
-          targetDiv.scrollIntoView({ behavior: 'smooth' });
+            targetDiv.scrollIntoView({ behavior: 'smooth' });
         }
-      };
+    };
 
-      function goToCreateWork(){
+    function goToCreateWork() {
         navigate('/creatework')
-      }
+    }
 
-      function goToWorkers(){
+    function goToWorkers() {
         navigate('/workerlist')
-      }
+    }
 
     return (
         <>
             <div className="container-fluid">
                 <div className="row navbar">
 
-                    <div className="col-lg-3 col-sm-6 col-md-6 webName">
-                        <h2 className="ps-4" onClick={goToHome}><a href='' className='blueCollarGigsTitle text-decoration-none'>Blue Collar Gigs</a></h2>
+                    <div className="col-lg-3 col-sm-6 col-md-6 webName d-flex align-items-center" onClick={goToHome}>
+                        <img src="/images/gearSpin.gif" alt="" style={{ height: '60px' }} />
+                        <h2 className="ps-4 mb-0" >
+                            <a href='' className='blueCollarGigsTitle text-decoration-none'>Blue Collar Gigs</a>
+                        </h2>
                     </div>
 
                     <div className="col text-end">

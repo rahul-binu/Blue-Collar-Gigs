@@ -27,7 +27,7 @@ public class JobCategory {
     @Column(name = "job_category")
     private String jobCategory;
 
-    @Column(name = "job_description")
+    @Column(name = "job_description", columnDefinition = "TEXT")
     private String jobDescription;
 
     @Column(name="jobCatPic")

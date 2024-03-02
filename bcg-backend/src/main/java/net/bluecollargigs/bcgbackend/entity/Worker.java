@@ -30,7 +30,7 @@ public class Worker {
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "skills", nullable = false)
+    @Column(name = "skills", nullable = false, columnDefinition = "TEXT")
     private String skills;
 
     @Column(name = "f_lang", nullable = false)

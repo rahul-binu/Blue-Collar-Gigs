@@ -30,6 +30,8 @@ function WorkDetails() {
     const [recruiterPhone, setRecruiterPhone] = useState('');
     const [state, setState] = useState('');
     const [workEstimatedStartDate, setWorkEstimatedStartDate] = useState('');
+    const [whyWeHire, setwhyWeHire] = useState('');
+    const [estWorkerPropo, setEstWorkerPropo] = useState('');
 
 
     useEffect(() => {
@@ -78,10 +80,12 @@ function WorkDetails() {
 
         const jobId = id;
 
+
         const applicationReq = {
-            jobId,
-            applicantId
+            jobId, applicantId,
+            whyWeHire, estWorkerPropo
         };
+        // console.log(applicationReq);
         createApplicationReq(applicationReq)
             .then(response => {
                 console.log("Success:", response);
@@ -107,7 +111,7 @@ function WorkDetails() {
                 <button type="button" className="btn btn-warning"
                     title="Make a request if you are interested"
                 >
-                <span className="px-3"><Icon.ExclamationOctagon/></span>    You have already requested for this work
+                    <span className="px-3"><Icon.ExclamationOctagon /></span>    You have already requested for this work
                 </button>
             );
         }
@@ -257,15 +261,25 @@ function WorkDetails() {
                         </div>
                         <div className="row mt-3">
                             <div className="col ">
-                                <div className="row">
-                                    <div className="col text-center">
-                                        {applyBtn()}
+                                <form >
+                                    <div className="row mt-3">
+                                        <textarea id="" cols="30" rows="3" placeholder="Write somthing about why i hire you"
+                                            onChange={(e) => setwhyWeHire(e.target.value)} className="form-control" />
                                     </div>
-                                </div>
-                                <br />
-                                <div className="row">
-                                    <p>After your profile has been validated by the job provider, they will initiate contact with you.</p>
-                                </div>
+                                    <div className="row mt-3">
+                                        <input type="text" className="form-control" required
+                                            placeholder="Your estimated wage/day" onChange={(e) => setEstWorkerPropo(e.target.value)} />
+                                    </div>
+                                    <div className="row mt-3">
+                                        <div className="col text-center">
+                                            {applyBtn()}
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div className="row">
+                                        <p>After your profile has been validated by the job provider, they will initiate contact with you.</p>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 

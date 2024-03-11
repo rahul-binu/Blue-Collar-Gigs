@@ -5,9 +5,9 @@ const JobCard = () => {
     return (
         <div className="container">
 
-            <Carousel>
+            <Carousel >
                 <Carousel.Item>
-                    <img
+                    <img style={{height:'35em'}}
                         className="d-block w-100"
                         src="https://sociology.plus/wp-content/uploads/2022/08/Blue-Collar-Worker-Sociology-Definition-669x350.png"
                         alt="First slide"
@@ -18,9 +18,9 @@ const JobCard = () => {
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
-                    <img
+                    <img style={{height:'35em'}}
                         className="d-block w-100"
-                        src="https://via.placeholder.com/800x400"
+                        src="https://blog.vantagecircle.com/content/images/2021/07/blue-collar-workers-examples.png"
                         alt="Second slide"
                     />
                     <Carousel.Caption>

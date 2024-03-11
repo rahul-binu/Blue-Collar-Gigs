@@ -85,15 +85,15 @@ function Home() {
         </div>
       </div>
 
-      <div className="container">
+      {/* <div className="container">
         <div className="row">
           <div className="col text-danger">
             <p>about</p>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className="container-fluid">
+      <div className="container-fluid mt-5">
         <JobCard />
       </div>
 

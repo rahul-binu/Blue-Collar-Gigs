@@ -5,7 +5,7 @@ import { createProfile, getProfileData, updateProfileAPI } from "../services/pro
 import { uploadToCloudinary } from './utils/uploadToCloudinary';
 import ProfileSide from "./profile/profileSide";
 import ErrorPop from './ESMessage/ErrorPop';
-import SuccessPop from'./ESMessage/SuccessPop';
+import SuccessPop from './ESMessage/SuccessPop';
 
 function Profile() {
 
@@ -26,6 +26,13 @@ function Profile() {
     const [aboutUser, setAboutUser] = useState('');
     const [profileid, setProfileId] = useState('');
     const [profilePic, setProfilePhoto] = useState('');
+
+    const [errors, setErrors] = useState({
+        userEmail: '', profileFirstName: '', district: '',
+        address: '', profileLastName: '', userPhone: '',
+        state: '', pincode: '', aboutUser: ''
+    });
+
 
     // const [isLoading, setLoading] = useState(false);
     //const userId = 12;
@@ -67,20 +74,22 @@ function Profile() {
             address, district, state, pincode, aboutUser, profilePic
         };
 
+        if (formValidation()) {
+            createProfile(profile).then((response) => {
+                console.log(response.data);
+                //  navigate('/');
+                setSuccessMessage("Profile created successfully")
+            }).catch(error => {
+                console.log(error);
+                setErrorMessage("Wrong Credentials, Try again");
+            })
+        }
 
-        createProfile(profile).then((response) => {
-            console.log(response.data);
-          //  navigate('/');
-          setSuccessMessage("Profile created successfully")
-        }).catch(error => {
-            console.log(error);
-            setErrorMessage("Wrong Credentials, Try again" );
-        })
     }
 
     function updateProfile(e) {
         e.preventDefault();
-        
+
         const newprofile = {
             userId, profileFirstName, profileLastName, userEmail, userPhone,
             address, district, state, pincode, aboutUser, profilePic
@@ -88,14 +97,17 @@ function Profile() {
 
         console.log(newprofile);
 
-        updateProfileAPI(newprofile, userId).then((response) => {
-            console.log(response.data);
-            setSuccessMessage("Profile updated successfully")
-           // navigate('/');
-        }).catch(error => {
-            console.log(error);
-            setErrorMessage("Oops! Something unexpected occurred while processing your request" );
-        })
+        if (formValidation()) {
+
+            updateProfileAPI(newprofile, userId).then((response) => {
+                console.log(response.data);
+                setSuccessMessage("Profile updated successfully")
+                // navigate('/');
+            }).catch(error => {
+                console.log(error);
+                setErrorMessage("Oops! Something unexpected occurred while processing your request");
+            })
+        }
     }
 
     function submitButton() {
@@ -122,11 +134,96 @@ function Profile() {
         }
     }
 
+    function formValidation() {
+        let valid = true;
+        const errorsCopy = { ...errors };
+
+        if (!userEmail.trim()) {
+            errorsCopy.userEmail = 'Please make sure your email is provided';
+            valid = false;
+        } else {
+            errorsCopy.userEmail = '';
+        }
+
+        // Profile First Name Validation
+        if (!profileFirstName.trim()) {
+            errorsCopy.profileFirstName = 'Please provide your first name';
+            valid = false;
+        } else {
+            errorsCopy.profileFirstName = '';
+        }
+
+        // District Validation
+        // if (!district.trim()) {
+        //     errorsCopy.district = 'Please provide your district';
+        //     valid = false;
+        // } else {
+        //     errorsCopy.district = '';
+        // }
+
+        // // Address Validation
+        // if (!address.trim()) {
+        //     errorsCopy.address = 'Please provide your address';
+        //     valid = false;
+        // } else {
+        //     errorsCopy.address = '';
+        // }
+
+        // Profile Last Name Validation
+        if (!profileLastName.trim()) {
+            errorsCopy.profileLastName = 'Please provide your last name';
+            valid = false;
+        } else {
+            errorsCopy.profileLastName = '';
+        }
+
+        // User Phone Validation
+        if (!userPhone.trim()) {
+            errorsCopy.userPhone = 'Please provide your phone number';
+            valid = false;
+        } else if (userPhone.trim().length !== 10) {
+            errorsCopy.userPhone = 'Phone number must be 10 digits';
+            valid = false;
+        } else {
+            errorsCopy.userPhone = '';
+        }
+        
+
+        // State Validation
+        // if (!state.trim()) {
+        //     errorsCopy.state = 'Please provide your state';
+        //     valid = false;
+        // } else {
+        //     errorsCopy.state = '';
+        // }
+
+        // Pincode Validation
+        // if (!pincode.trim()) {
+        //     errorsCopy.pincode = 'Please provide your pincode';
+        //     valid = false;
+        // } else {
+        //     errorsCopy.pincode = '';
+        // }
+
+        // About User Validation
+        // if (!aboutUser.trim()) {
+        //     errorsCopy.aboutUser = 'Please provide some information about yourself';
+        //     valid = false;
+        // } else {
+        //     errorsCopy.aboutUser = '';
+        // }
+
+        setErrors(errorsCopy);
+
+        return valid;
+    }
+
+
     return (
         <>
-        <ErrorPop errorMessage={errorMessage} />
-        
-        <SuccessPop successMessage={successMessage} />
+            <ErrorPop errorMessage={errorMessage} />
+
+            <SuccessPop successMessage={successMessage} />
 
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
@@ -178,17 +275,18 @@ function Profile() {
                                             <label htmlFor="" className="mx-3 mb-1">First Name</label>
                                             <input type='email' autoComplete="new-password"
                                                 onChange={(e) => setProfileFirstName(e.target.value)}
-                                                className='form-control' value={profileFirstName}
+                                                className={`form-control ${errors.profileFirstName ? 'is-invalid' : ''}`}
+                                                value={profileFirstName}
                                                 placeholder="First Name" />
-                                            {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
+                                            {errors.profileFirstName && <div className='invalid-feedback'>{errors.profileFirstName}</div>}
                                         </div>
                                         <div className="col text-start">
                                             <label htmlFor="" className="mx-3 mb-1">Last Name</label>
                                             <input type='email' autoComplete="new-password"
                                                 onChange={(e) => setProfileLastName(e.target.value)}
-                                                className='form-control' value={profileLastName}
+                                                className={`form-control ${errors.profileLastName ? 'is-invalid' : ''}`} value={profileLastName}
                                                 placeholder="Last Name" />
-                                            {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
+                                            {errors.profileLastName && <div className='invalid-feedback'>{errors.profileLastName}</div>}
                                         </div>
                                     </div>
 
@@ -196,11 +294,15 @@ function Profile() {
                                         <div className="col text-start">
                                             <div className="form-group">
                                                 <label htmlFor="" className="mx-3 mb-1">Email</label>
-                                                <input type='email' autoComplete="new-password"
+                                                <input
+                                                    type='email'
+                                                    autoComplete="new-password"
                                                     onChange={(e) => setUserEmail(e.target.value)}
-                                                    className='form-control' value={userEmail}
-                                                    placeholder="user@example.com" />
-                                                {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
+                                                    className={`form-control ${errors.userEmail ? 'is-invalid' : ''}`}
+                                                    value={userEmail}
+                                                    placeholder="user@example.com"
+                                                />
+                                                {errors.userEmail && <div className='invalid-feedback'>{errors.userEmail}</div>}
                                             </div>
                                         </div>
 
@@ -210,9 +312,9 @@ function Profile() {
                                                 <label htmlFor="" className="mx-3 mb-1">Mobile</label>
                                                 <input type='number' autoComplete="new-password" value={userPhone}
                                                     onChange={(e) => setUserPhone(e.target.value)}
-                                                    className='form-control'
+                                                    className={`form-control ${errors.userPhone ? 'is-invalid' : ''}`}
                                                     placeholder="9876543210" />
-                                                {/* {errors.email && <div className='invalid-feedback'>{errors.email}</div>} */}
+                                                {errors.userPhone && <div className='invalid-feedback'>{errors.userPhone}</div>}
                                             </div>
                                         </div>
                                     </div>
@@ -221,9 +323,11 @@ function Profile() {
                                         <div className="col mb-2 text-start">
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">Address</label>
-                                                <textarea className="form-control" rows="2" value={address}
+                                                <textarea className={`form-control ${errors.address ? 'is-invalid' : ''}`}
+                                                    rows="2" value={address}
                                                     onChange={(e) => setAddress(e.target.value)}
                                                     placeholder="House NO/Name, Street"></textarea>
+                                                {errors.address && <div className=''>{errors.address}</div>}
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +336,7 @@ function Profile() {
                                         <div className="col mb-2 text-start">
                                             <div className="form-group">
                                                 <label className="mb-1 mx-3">District</label>
-                                                <input type="text" className="form-control" rows="2"
+                                                <input type="text" className={`form-control ${errors.district ? 'is-invalid' : ''}`} rows="2"
                                                     value={district}
                                                     onChange={(e) => setDistrict(e.target.value)}
                                                     placeholder="District" />

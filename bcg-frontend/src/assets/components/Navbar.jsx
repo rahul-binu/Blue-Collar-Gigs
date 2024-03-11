@@ -11,6 +11,7 @@ import AuthService from '../services/AuthService';
 import { getProfileAction } from '../config/user';
 import { getUserDetails } from '../services/profile';
 import { UserType } from './utils/UserLocalStoreVal';
+import CurrentTime from './utils/CurrentTime';
 
 function Navbar() {
 
@@ -145,12 +146,16 @@ function Navbar() {
         <>
             <div className="container-fluid">
                 <div className="row navbar">
-
-                    <div className="col-lg-3 col-sm-6 col-md-6 webName d-flex align-items-center" onClick={goToHome}>
-                        <img src="/images/gearSpin.gif" alt="" style={{ height: '60px' }} />
+                    <div className="col-lg-4 col-sm-6 col-md-6 webName d-flex align-items-center" onClick={goToHome}>
+                    <img src="/images/gearSpin2.gif" alt="" style={{ height: '50px', paddingLeft: '10%' }} />
+                            
+                        <div className="text-dark text-center">
+                            <CurrentTime />
+                           
+                        </div>
                         <h2 className="ps-4 mb-0" >
                             <a href='' className='blueCollarGigsTitle text-decoration-none'>Blue Collar Gigs</a>
-                        </h2>
+                        </h2>                        
                     </div>
 
                     <div className="col text-end">

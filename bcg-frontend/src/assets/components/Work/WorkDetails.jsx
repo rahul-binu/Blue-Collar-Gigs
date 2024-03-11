@@ -31,7 +31,7 @@ function WorkDetails() {
     const [state, setState] = useState('');
     const [workEstimatedStartDate, setWorkEstimatedStartDate] = useState('');
     const [whyWeHire, setwhyWeHire] = useState('');
-    const [estWorkerPropo, setEstWorkerPropo] = useState('');
+    const [ewpd, setEstWorkerPropo] = useState('');
 
 
     useEffect(() => {
@@ -83,7 +83,7 @@ function WorkDetails() {
 
         const applicationReq = {
             jobId, applicantId,
-            whyWeHire, estWorkerPropo
+            ewpd, whyWeHire
         };
         // console.log(applicationReq);
         createApplicationReq(applicationReq)

@@ -66,7 +66,7 @@ function WorkDetailsR() {
     function getAllApplications() {
         applicationByJid(id)
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setApplications(response.data);
                 return response.data; // Return applications data for chaining
             })
@@ -87,12 +87,12 @@ function WorkDetailsR() {
     }
 
     function getAppliedWorkersData(wid) {
-        console.log("========>", wid);
+        // console.log("========>", wid);
 
         // Fetch worker data
         getWorkerData(wid)
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setWorkerDetails(prevWorkerDetails => {
                     // Check if worker data already exists in state
                     if (!prevWorkerDetails.find(worker => worker.userId === response.data.userId)) {
@@ -108,7 +108,7 @@ function WorkDetailsR() {
         // Fetch worker profile data
         getAWorkerProfileAPI(wid)
             .then(response => {
-                console.log("========>", wid, response.data);
+                // console.log("========>", wid, response.data);
                 setWorkerProfileDetails(prevWorkerProfileDetails => {
                     // Check if worker profile data already exists in state
                     if (!prevWorkerProfileDetails.find(profile => profile.profileId === response.data.profileId)) {
@@ -145,7 +145,8 @@ function WorkDetailsR() {
             </div>
 
 
-            <div className="container text-dark">
+            <div className="container text-dark mb-4">
+
                 <div className="row mt-5">
                     <div className="col-lg-6">
                         <div className="row mb-4">
@@ -649,7 +650,7 @@ function WorkDetailsR() {
                                                         </div>
                                                         <img src={ProfilePic(workerProfileDetails.profilePic)}
                                                             style={{
-                                                                marginTop:'3em',
+                                                                marginTop: '3em',
                                                                 marginRight: '50px',
                                                                 height: '250px', // Set height to 100% to fill the container height
                                                                 width: '250px',
@@ -661,6 +662,28 @@ function WorkDetailsR() {
 
 
                                                 </div>
+
+                                                <div className="row text-dark align-items-center">
+                                                    <hr />
+                                                    <div className="row mb-3"><h5>Why You Should Hire Me</h5></div>
+                                                    {applications.map(application => (
+                                                        <React.Fragment key={application.applicationId}>
+                                                            {workerProfileDetails.userId === application.applicantId && (
+                                                                <React.Fragment>
+                                                                    <div className="col-7">
+                                                                        <p>{application.whyWeHire}</p>
+                                                                    </div>
+                                                                    <div className="col-3">
+                                                                        <p>I can do this work for <span className="text-success" 
+                                                                        style={{ fontSize: '18px', fontWeight: 'bold' }}>₹{application.ewpd}</span> per day</p>
+                                                                    </div>
+                                                                </React.Fragment>
+                                                            )}
+                                                        </React.Fragment>
+                                                    ))}
+                                                </div>
+
+
                                             </div>
                                         </div>
                                         {/* actodian body end */}

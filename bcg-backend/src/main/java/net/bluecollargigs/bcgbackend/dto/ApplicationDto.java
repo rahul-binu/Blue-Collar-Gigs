@@ -13,4 +13,6 @@ public class ApplicationDto {
     private Long applicationId;
     private Long jobId;
     private Long applicantId;
+    private String ewpd;
+    private String whyWeHire;
 }

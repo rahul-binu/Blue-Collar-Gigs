@@ -30,4 +30,10 @@ public class Application {
     @Column(name = "applicant_id")
     private Long applicantId;
 
+    @Column(name = "w_e_w_p_d")
+    private String ewpd;
+
+    @Column(name = "why_we_hire")
+    private String whyWeHire;
+
 }

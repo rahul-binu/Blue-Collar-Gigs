@@ -9,13 +9,17 @@ public class ApplicationMapper {
         return new Application(
                 applicationDto.getApplicationId(),
                 applicationDto.getJobId(),
-                applicationDto.getApplicantId());
+                applicationDto.getApplicantId(),
+                applicationDto.getEwpd(),
+                applicationDto.getWhyWeHire());
     }
 
     public static ApplicationDto mapToApplicationDto(Application application) {
         return new ApplicationDto(
                 application.getApplicationId(),
                 application.getJobId(),
-                application.getApplicantId());
+                application.getApplicantId(),
+                application.getEwpd(),
+                application.getWhyWeHire());
     }
 }

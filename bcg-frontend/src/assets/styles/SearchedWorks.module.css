@@ -1,0 +1,61 @@
+/* SearchedWorks.module.css */
+
+.search-results-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 3em;
+    text-align: center;
+}
+
+.work-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+
+.work-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Adding transition for the transform and background-color properties */
+}
+
+.work-item:hover {
+    transform: translateY(-5px); /* Applying the motion effect on hover */
+    background-color: #8e8080; /* Changing background color on hover */
+}
+
+.work-item h2 {
+    margin-bottom: 10px;
+}
+
+.work-item p {
+    margin-bottom: 5px;
+}
+
+/* Additional styles for the "NO RESULTS" message */
+
+.no-results-wrapper {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.no-results-image {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+.no-results-text {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.no-results-description {
+    font-size: 16px;
+    color: #666;
+}

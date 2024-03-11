@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import "/src/assets/styles/Home.css";
@@ -20,6 +20,32 @@ function Home() {
     navigate('/service');
   }
 
+  function goToSearch() {
+    console.log(searchTerm);
+    navigate(`/searchWork/${searchTerm}`)
+
+  }
+
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const relatedWords = ["Moving",
+    "Cleaning", "Plumbing", "Electrical", "Landscaping", "Painting", "Carpentry",
+    "Roofing", "Flooring", "Masonry", "Welding", "Automotive", "Pest Control",
+    "Drywall", "Locksmith", "Appliances", "Janitorial", "Demolition"];
+
+    const handleInputChange = (event) => {
+      const { value } = event.target;
+      const defaultValue = "0000";
+      if (value.trim() === "") {
+          setSearchTerm(defaultValue);
+      } else {
+          setSearchTerm(value);
+      }
+  };
+  
+
+
+
   return (
     <div className="container-fluid">
 
@@ -32,14 +58,29 @@ function Home() {
 
         <div className="container mt-5">
 
-          <div className="row justify-content-center">
+          <div className="row justify-content-center ">
             <div className="col-md-6">
-              <div className="pill-search-container">
-                <form className="d-flex">
-                  <input className="form-control me-2 pill-search" type="search" placeholder="Search" aria-label="Search" />
-                  <button className="btn btn-success"><Icon.Search /></button>
-                </form>
+
+              <div className="pill-search-container d-flex">
+                <input
+                  className="form-control me-2 pill-search"
+                  type="search"
+                  list="relatedWords"
+                  placeholder="Search Works title, category or district"
+                  aria-label="Search"
+                  value={searchTerm}
+                  onChange={handleInputChange}
+                />
+                <button className="btn btn-success" onClick={goToSearch}><Icon.Search /></button>
+
+                {/* Datalist for autocomplete suggestions */}
+                <datalist id="relatedWords">
+                  {relatedWords.map((word, index) => (
+                    <option key={index} value={word} />
+                  ))}
+                </datalist>
               </div>
+
             </div>
           </div>
 

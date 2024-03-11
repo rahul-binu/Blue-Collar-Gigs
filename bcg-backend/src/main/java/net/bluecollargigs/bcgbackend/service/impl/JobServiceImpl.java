@@ -78,4 +78,15 @@ public class JobServiceImpl implements JobService {
 
         return JobMapper.mapToJobDto(job);
     }
+
+    public List<JobDto> getJobByKey(String key) {
+        List<Job> jobs = jobRepository.findByKey(key); 
+        if (jobs == null) {
+            throw new ResourceNotFoundException("No job found with key: " + key); 
+        }
+        return jobs.stream().map((job) -> JobMapper.mapToJobDto(job))
+        .collect(Collectors.toList());
+    }
+
+   
 }

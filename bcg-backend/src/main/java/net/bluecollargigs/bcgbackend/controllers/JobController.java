@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -67,5 +69,12 @@ public class JobController {
         JobDto updatedJob = jobService.updateJobStatus(id, jobDto);
         return ResponseEntity.ok(updatedJob);
     }
+
+    @GetMapping("/jobsearch/{key}")
+    public ResponseEntity<List<JobDto>> getWorkByKey(@PathVariable("key") String key) {
+        List<JobDto> jobs = jobService.getJobByKey(key);
+        return ResponseEntity.ok(jobs);
+    }
+    
 
 }
